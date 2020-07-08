@@ -1,191 +1,72 @@
 @extends('plantilla')
 @section('contenido')
 <div class="row">
-    <div class="col-md-12">
-        <div class="card ">
-            <div class="card-header card-header-success card-header-icon">
-                <div class="card-icon">
-                    <i class="material-icons"></i>
-                </div>
-                <h4 class="card-title">Global Sales by Top Locations</h4>
-            </div>
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="table-responsive table-sales">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="flag">
-                                                <img src="../assets/img/flags/US.png" </div> </td> <td>USA
-                                        </td>
-                                        <td class="text-right">
-                                            2.920
-                                        </td>
-                                        <td class="text-right">
-                                            53.23%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="flag">
-                                                <img src="../assets/img/flags/DE.png" </div> </td> <td>Germany
-                                        </td>
-                                        <td class="text-right">
-                                            1.300
-                                        </td>
-                                        <td class="text-right">
-                                            20.43%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="flag">
-                                                <img src="../assets/img/flags/AU.png" </div> </td> <td>Australia
-                                        </td>
-                                        <td class="text-right">
-                                            760
-                                        </td>
-                                        <td class="text-right">
-                                            10.35%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="flag">
-                                                <img src="../assets/img/flags/GB.png" </div> </td> <td>United Kingdom
-                                        </td>
-                                        <td class="text-right">
-                                            690
-                                        </td>
-                                        <td class="text-right">
-                                            7.87%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="flag">
-                                                <img src="../assets/img/flags/RO.png" </div> </td> <td>Romania
-                                        </td>
-                                        <td class="text-right">
-                                            600
-                                        </td>
-                                        <td class="text-right">
-                                            5.94%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="flag">
-                                                <img src="../assets/img/flags/BR.png" </div> </td> <td>Brasil
-                                        </td>
-                                        <td class="text-right">
-                                            550
-                                        </td>
-                                        <td class="text-right">
-                                            4.34%
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-content">
+                <div id="slides" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slides" data-slide-to="0" class="active"></li>
+                        <li data-target="#slides" data-slide-to="1"></li>
+                        <li data-target="#slides" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="vista/img/defecto/slide1.png" alt="">
+                            <div class="carousel-caption d-none d-md-block"
+                                style="background-color: rgb(225, 43, 107,0.7); border-radius: 2px;">
+                                <h5 style="color: white; font-weight: 400;">CV's Modernos y Profesionales</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="vista/img/defecto/slide2.jpg" alt="">
+                            <div class="carousel-caption d-none d-md-block"
+                                style="background-color: rgb(225, 43, 107,0.7); border-radius: 2px;">
+                                <h5 style="color: white; font-weight: 400;">Más de 10 Diseños</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="vista/img/defecto/slide3.png" alt="">
+                            <div class="carousel-caption d-none d-md-block"
+                                style="background-color: rgb(225, 43, 107,0.7); border-radius: 2px;">
+                                <h5 style="color: white; font-weight: 400;">Colores Personalizables</h5>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 ml-auto mr-auto">
-                        <div id="worldMap" style="height: 300px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card card-chart">
-            <div class="card-header card-header-rose" data-header-animation="true">
-                <div class="ct-chart" id="websiteViewsChart"></div>
-            </div>
-            <div class="card-body">
-                <div class="card-actions">
-                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                        <i class="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom"
-                        title="Refresh">
-                        <i class="material-icons">refresh</i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
-                        title="Change Date">
-                        <i class="material-icons">edit</i>
-                    </button>
-                </div>
-                <h4 class="card-title">Website Views</h4>
-                <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                    <a class="left carousel-control" href="#slides" role="button" data-slide="prev">
+                        <span class="material-icons icon-prev icon-keyboard_arrow_left" aria-hidden="true"
+                            style="color: #ffffff; font-size: 30px"></span>
+                    </a>
+                    <a class="right carousel-control" href="#slides" role="button" data-slide="next">
+                        <span class="material-icons icon-next icon-keyboard_arrow_right" aria-hidden="true"
+                            style="color: #ffffff; font-size: 30px"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card card-chart">
-            <div class="card-header card-header-success" data-header-animation="true">
-                <div class="ct-chart" id="dailySalesChart"></div>
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <img class="img" src="vista/img/defecto/gerardo.jpg" />
             </div>
-            <div class="card-body">
-                <div class="card-actions">
-                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                        <i class="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom"
-                        title="Refresh">
-                        <i class="material-icons">refresh</i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
-                        title="Change Date">
-                        <i class="material-icons">edit</i>
-                    </button>
-                </div>
-                <h4 class="card-title">Daily Sales</h4>
-                <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today
-                    sales.</p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-chart">
-            <div class="card-header card-header-info" data-header-animation="true">
-                <div class="ct-chart" id="completedTasksChart"></div>
-            </div>
-            <div class="card-body">
-                <div class="card-actions">
-                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                        <i class="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom"
-                        title="Refresh">
-                        <i class="material-icons">refresh</i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
-                        title="Change Date">
-                        <i class="material-icons">edit</i>
-                    </button>
-                </div>
-                <h4 class="card-title">Completed Tasks</h4>
-                <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                </div>
+            <div class="card-content">
+                <div class="form-group"></div>
+                <h6 class="card-title">Gerardo Chaico Padilla</h6>
+                <p class="category text-gray">Programador / Desarrollador Web</p>
+                <p class="card-content">Te gustaria crear un <span class="text-primary">Curriculum Vitae Moderno y
+                        Profesional. </span> <b>¿No sabes por donde empezar? </b>Soy el creador de esta aplicación y te
+                    doy la bienvenida a <b class="text-primary">CV TRUE.</b> Ahora podrás crear un CV moderno y
+                    profesional de una forma muy sencilla y rápida. Olvidate del Office que CV TRUE lo hará por ti. <br>
+                    <?php if (!isset($_SESSION['usuario'])): ?>
+                    <b>¿Qué esperas? </b>
+                    <a href="usuario.php" class="btn-link text-primary">
+                        <b>Registrate.</b>
+                    </a>
+                    Y felicidades por tu próximo empleo.<br>
+                    <?php endif?>
+                    <small class="text-muted">Aprovecha!!!. Gratis temporalmente.</small></p>
+                <a href="https://chaicopadillag.com" target="_blak" class="btn btn-rose">Ver Perfil</a>
             </div>
         </div>
     </div>
@@ -193,200 +74,80 @@
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
-                <div class="card-icon">
-                    <i class="material-icons">weekend</i>
-                </div>
-                <p class="card-category">Bookings</p>
-                <h3 class="card-title">184</h3>
+            <div class="card-header" data-background-color="orange">
+                <i class="material-icons icon-profile"></i>
+            </div>
+            <div class="card-content">
+                <p class="category">Modelos CV's</p>
+                <h3 class="card-title">+10</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Get More Space...</a>
+                    <p>CV'S Profesionales</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-rose card-header-icon">
-                <div class="card-icon">
-                    <i class="material-icons">equalizer</i>
-                </div>
-                <p class="card-category">Website Visits</p>
-                <h3 class="card-title">75.521</h3>
+            <div class="card-header" data-background-color="rose">
+                <i class="material-icons icon-favorite"></i>
+            </div>
+            <div class="card-content">
+                <p class="category">Visitas</p>
+                <h3 class="card-title">+0.7K</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                    <p>Visitas a la Web</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-success card-header-icon">
-                <div class="card-icon">
-                    <i class="material-icons">store</i>
-                </div>
-                <p class="card-category">Revenue</p>
-                <h3 class="card-title">$34,245</h3>
+            <div class="card-header" data-background-color="green">
+                <i class="material-icons icon-coin-dollar"></i>
+            </div>
+            <div class="card-content">
+                <p class="category">CV Gratis</p>
+                <h3 class="card-title">S/. 00</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
+                    <p>Totalmente gratis</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-info card-header-icon">
-                <div class="card-icon">
-                    <i class="fa fa-twitter"></i>
-                </div>
-                <p class="card-category">Followers</p>
-                <h3 class="card-title">+245</h3>
+            <div class="card-header" data-background-color="blue">
+                <i class="material-icons  icon-supervisor_account"></i>
+            </div>
+            <div class="card-content">
+                <p class="category">Usuarios</p>
+                <h3 class="card-title">+99</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
+                    <p>Usuarios</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<h3>Manage Listings</h3>
-<br>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card card-product">
-            <div class="card-header card-header-image" data-header-animation="true">
-                <a href="#pablo">
-                    <img class="img" src="../assets/img/card-2.jpg">
-                </a>
-            </div>
-            <div class="card-body">
-                <div class="card-actions text-center">
-                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                        <i class="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
-                        title="View">
-                        <i class="material-icons">art_track</i>
-                    </button>
-                    <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom"
-                        title="Edit">
-                        <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom"
-                        title="Remove">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-                <h4 class="card-title">
-                    <a href="#pablo">Cozy 5 Stars Apartment</a>
-                </h4>
-                <div class="card-description">
-                    The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio"
-                    where you can enjoy the main night life in Barcelona.
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="price">
-                    <h4>$899/night</h4>
-                </div>
-                <div class="stats">
-                    <p class="card-category"><i class="material-icons">place</i> Barcelona, Spain</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-product">
-            <div class="card-header card-header-image" data-header-animation="true">
-                <a href="#pablo">
-                    <img class="img" src="../assets/img/card-3.jpg">
-                </a>
-            </div>
-            <div class="card-body">
-                <div class="card-actions text-center">
-                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                        <i class="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
-                        title="View">
-                        <i class="material-icons">art_track</i>
-                    </button>
-                    <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom"
-                        title="Edit">
-                        <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom"
-                        title="Remove">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-                <h4 class="card-title">
-                    <a href="#pablo">Office Studio</a>
-                </h4>
-                <div class="card-description">
-                    The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where
-                    you can enjoy the night life in London, UK.
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="price">
-                    <h4>$1.119/night</h4>
-                </div>
-                <div class="stats">
-                    <p class="card-category"><i class="material-icons">place</i> London, UK</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-product">
-            <div class="card-header card-header-image" data-header-animation="true">
-                <a href="#pablo">
-                    <img class="img" src="../assets/img/card-1.jpg">
-                </a>
-            </div>
-            <div class="card-body">
-                <div class="card-actions text-center">
-                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                        <i class="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
-                        title="View">
-                        <i class="material-icons">art_track</i>
-                    </button>
-                    <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom"
-                        title="Edit">
-                        <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom"
-                        title="Remove">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-                <h4 class="card-title">
-                    <a href="#pablo">Beautiful Castle</a>
-                </h4>
-                <div class="card-description">
-                    The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where
-                    you can enjoy the main night life in Milan.
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="price">
-                    <h4>$459/night</h4>
-                </div>
-                <div class="stats">
-                    <p class="card-category"><i class="material-icons">place</i> Milan, Italy</p>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-content">
+        <h4 class="card-title">CV TRUE -
+            <small class="category">Video Demo</small>
+        </h4>
+        <div
+            style="width: 100%; display: flex;flex-wrap: wrap;justify-content: center;align-items: center;padding: 10px">
+
+            <iframe width="506" height="315" src="https://www.youtube.com/embed/mRlpRsJ3oC8" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
         </div>
     </div>
 </div>
