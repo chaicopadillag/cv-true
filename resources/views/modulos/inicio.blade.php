@@ -145,8 +145,8 @@
         <div
             style="width: 100%; display: flex;flex-wrap: wrap;justify-content: center;align-items: center;padding: 10px">
 
-            <iframe width="506" height="315" src="https://www.youtube.com/embed/mRlpRsJ3oC8" frameborder="0"
-                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe width="506" height="315" src="" frameborder="0" allow="autoplay; encrypted-media"
+                allowfullscreen></iframe>
 
         </div>
     </div>

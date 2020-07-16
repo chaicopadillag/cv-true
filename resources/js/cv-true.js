@@ -1,0 +1,1 @@
+$("#fecha_inicio").datetimepicker();

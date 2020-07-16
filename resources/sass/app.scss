@@ -1,8 +1,12 @@
+$url_host_font: "http://localhost/cv-true/public/fonts/";
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700");
 
 // Variables
-@import 'variables';
+// @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import "~bootstrap/scss/bootstrap";
+@import "~material-design-icons/iconfont/material-icons.scss";
+@import "material-dashboard.css";
+@import "demo.css";

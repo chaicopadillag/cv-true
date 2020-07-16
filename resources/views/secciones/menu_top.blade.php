@@ -10,8 +10,8 @@
             <a class="navbar-brand" href="javascript:;">Dashboard</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
+            aria-expanded="false" aria-label="Menu de navegación">
+            <span class="sr-only">Menu de navegación</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -41,7 +41,7 @@
                         <i class="material-icons">notifications</i>
                         <span class="notification">5</span>
                         <p class="d-lg-none d-md-block">
-                            Some Actions
+                            Algunas acciones
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -57,14 +57,14 @@
                         aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">person</i>
                         <p class="d-lg-none d-md-block">
-                            Account
+                            Cuenta
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="#">Configuraciones</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log out</a>
+                        <a class="dropdown-item" href="#">Cerrar sesión</a>
                     </div>
                 </li>
             </ul>

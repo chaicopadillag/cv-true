@@ -3,23 +3,28 @@
         <nav class="float-left">
             <ul>
                 <li>
-                    <a href="https://www.creative-tim.com/">
-                        Creative Tim
+                    <a class="nav-link" href="{{route('acerca-de')}}">
+                        Acerca de CV True
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.creative-tim.com/presentation">
-                        About Us
+                    <a class="nav-link" href="{{route('ayuda')}}">
+                        Ayuda
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.creative-tim.com/blog">
-                        Blog
+                    <a class="nav-link" href="{{route('aviso-legal')}}">
+                        Aviso legal
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.creative-tim.com/license">
-                        Licenses
+                    <a class="nav-link" href="{{route('politicas-de-privacidad')}}">
+                        Polítcias de privacidad
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{route('politicas-de-cookies')}}">
+                        Polítcias de Cookies
                     </a>
                 </li>
             </ul>
@@ -28,8 +33,8 @@
             &copy;
             <script>
                 document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+            </script>, hecho con <i class="material-icons">favorite</i> por
+            <a href="{{url('https://bit.ly/chaicopadillag')}}" target="_blank">G. Chaico</a> para ayudarte.
         </div>
     </div>
 </footer>

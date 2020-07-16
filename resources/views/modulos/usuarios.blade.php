@@ -5,9 +5,9 @@
         <div class="card">
             <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
-                    <span class="material-icons">
+                    <i class="material-icons">
                         people_alt
-                    </span>
+                    </i>
                 </div>
                 <h4 class="card-title">Usuarios</h4>
             </div>
@@ -33,8 +33,9 @@
                                 <td>{{$user->id}}</td>
                                 <td>
                                     <div class="">
-                                        <img class="rounded-circle" width="60" src="{{url('/')}}/{{$user->foto}}"
-                                            alt="{{url('/')}}/img/usuarios/default.png">
+                                        <img class="rounded-circle" width="60"
+                                            src="{{($user->foto!=null) ? url('/').'/'.$user->foto : url('/').'/img/usuarios/default.png'}}"
+                                            alt="{{$user->name}} {{$user->apellidos}}">
                                     </div>
                                 </td>
                                 <td class="td-name">

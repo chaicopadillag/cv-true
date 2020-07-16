@@ -8,6 +8,6 @@ class InicioController extends Controller
 {
     public function index()
     {
-        return view('modulos.inicio');
+        return view('inicio');
     }
 }
