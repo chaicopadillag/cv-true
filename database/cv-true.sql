@@ -2,9 +2,9 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-07-2020 a las 03:45:27
--- Versión del servidor: 10.4.11-MariaDB
+-- Servidor: localhost
+-- Tiempo de generación: 17-07-2020 a las 20:12:38
+-- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -30,13 +30,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `estudios` (
   `id_estudio` int(11) NOT NULL,
   `universidad` text NOT NULL,
-  `especialidad` int(11) NOT NULL,
+  `especialidad` text NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `descripcion` text NOT NULL,
   `id_user` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estudios`
+--
+
+INSERT INTO `estudios` (`id_estudio`, `universidad`, `especialidad`, `fecha_inicio`, `fecha_fin`, `descripcion`, `id_user`, `estado`, `created_at`, `updated_at`) VALUES
+(1, 'Udemy', 'UX Desing', '2017-03-02', '2020-07-09', 'loremq impsuio hj kjkjkadd', 1, 1, '2020-07-17 19:07:24', '2020-07-17 19:07:24');
 
 -- --------------------------------------------------------
 
@@ -52,7 +61,9 @@ CREATE TABLE `experiencias` (
   `fecha_fin` date NOT NULL,
   `descripcion` text NOT NULL,
   `id_user` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -83,7 +94,9 @@ CREATE TABLE `galeria` (
   `descripcion` text NOT NULL,
   `fecha` date NOT NULL,
   `id_user` int(11) NOT NULL,
-  `esatdo` tinyint(1) NOT NULL
+  `esatdo` tinyint(1) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -98,7 +111,9 @@ CREATE TABLE `habilidades` (
   `nivel` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `id_user` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -145,7 +160,9 @@ CREATE TABLE `redes_sociales` (
   `red_social` text NOT NULL,
   `url` text NOT NULL,
   `id_user` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -179,20 +196,20 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `apellidos` text NOT NULL,
+  `apellidos` text DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  `direccion` text NOT NULL,
-  `telefono` int(11) NOT NULL,
-  `especialidad` text NOT NULL,
-  `ciudad` text NOT NULL,
-  `pais` text NOT NULL,
-  `edad` int(11) NOT NULL,
-  `estado_civil` text NOT NULL,
-  `foto` text NOT NULL,
-  `genero` tinyint(1) NOT NULL,
-  `rol` int(11) NOT NULL,
-  `frase` text NOT NULL,
-  `resumen` text NOT NULL,
+  `direccion` text DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `especialidad` text DEFAULT NULL,
+  `ciudad` text DEFAULT NULL,
+  `pais` text DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `estado_civil` text DEFAULT NULL,
+  `foto` text DEFAULT NULL,
+  `genero` tinyint(1) NOT NULL DEFAULT 1,
+  `rol` int(11) DEFAULT 2,
+  `frase` text DEFAULT NULL,
+  `resumen` text DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -204,7 +221,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `apellidos`, `password`, `direccion`, `telefono`, `especialidad`, `ciudad`, `pais`, `edad`, `estado_civil`, `foto`, `genero`, `rol`, `frase`, `resumen`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Code', 'code@gmail.com', '', '$2y$10$xdJV6X.nXL6rZvdU7X/dGu5c4nChdm7vpS4SvFse/TnDxTLfn2PQq', '', 0, '', '', '', 0, '', '', 0, 1, '', '', NULL, NULL, '2020-07-05 06:00:10', '2020-07-05 06:00:10');
+(1, 'Code', 'code@gmail.com', NULL, '$2y$10$qxeUzMgx263ZUNOWfh8Gcu7RyFHyOGPItkBnS1AAkh5rf0i.ybhR6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2, NULL, NULL, NULL, NULL, '2020-07-17 21:56:32', '2020-07-17 21:56:32');
 
 --
 -- Índices para tablas volcadas
@@ -280,7 +297,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `estudios`
 --
 ALTER TABLE `estudios`
-  MODIFY `id_estudio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estudio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `experiencias`

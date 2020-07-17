@@ -52,6 +52,16 @@
                         <a class="dropdown-item" href="#">Another One</a>
                     </div>
                 </li>
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+                </li>
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                </li>
+                @endif
+                @else
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -64,9 +74,14 @@
                         <a class="dropdown-item" href="#">Perfil</a>
                         <a class="dropdown-item" href="#">Configuraciones</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Cerrar sesión</a>
+                        <a class="dropdown-item" href="{{route('logout')}}"
+                            onclick="event.preventDefault(); document.getElementById('form_salir').submit();">{{ __('Logout') }}</a>
+                        <form action="{{route('logout')}}" id="form_salir" method="POST" style="display: none">
+                            @csrf
+                        </form>
                     </div>
                 </li>
+                @endguest
             </ul>
         </div>
     </div>

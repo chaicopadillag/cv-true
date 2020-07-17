@@ -13,10 +13,15 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        Code Codero
+                        @if(Auth::check())
+                        {{Auth::user()->name}}
+                        @else
+                        {{'Invitado'}}
+                        @endif
                         <b class="caret"></b>
                     </span>
                 </a>
+                @if(Auth::check())
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li class="nav-item">
@@ -33,6 +38,7 @@
                         </li>
                     </ul>
                 </div>
+                @endif
             </div>
         </div>
         <ul class="nav">

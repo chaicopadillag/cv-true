@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EstudiosModel;
+use App\Http\Requests\EstudioRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EstudiosController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +20,7 @@ class EstudiosController extends Controller
      */
     public function index()
     {
-        // $id_user = Auth::user()->id;
-        $id_user = 1;
+        $id_user = Auth::user()->id;
         $estudios = EstudiosModel::where('id_user', $id_user)->get();
 
         return \view('modulos.estudios', array('estudios' => $estudios));
@@ -26,10 +31,10 @@ class EstudiosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -37,9 +42,20 @@ class EstudiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstudioRequest $request)
     {
-        //
+        $estudio = new EstudiosModel();
+        $estudio->especialidad = $request['especialidad'];
+        $estudio->universidad = $request['universidad'];
+        $estudio->fecha_inicio = date('Y-m-d', strtotime($request['fecha_inicio']));
+        $estudio->fecha_fin = date('Y-m-d', strtotime($request['fecha_fin']));
+        $estudio->descripcion = $request['descripcion'];
+        $estudio->id_user = Auth::user()->id;
+        if ($estudio->save() > 0) {
+            return redirect('modulos.estudios')->with('succes-save-estudio', '¡Estudio agregado con exito!');
+        } else {
+            return redirect('modulos.estudios')->with('error-save-estudio', 'Error al agregar estudio, intente de nuevo');
+        }
     }
 
     /**

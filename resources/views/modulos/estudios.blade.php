@@ -22,7 +22,8 @@
                         <h5 class="mb-0">
                             <a data-toggle="collapse" href="#collapse{{$estudio->id_estudio}}" aria-expanded="true"
                                 aria-controls="collapse{{$estudio->id_estudio}}" class="collapsed">
-                                {{$estudio->especialidad}} | {{$estudio->fecha_inicio}} - {{$estudio->fech_fin}}
+                                {{$estudio->especialidad}} | {{date('d-m-Y',strtotime($estudio->fecha_inicio))}} a
+                                {{ date('d-m-Y',strtotime($estudio->fecha_fin))}}
                                 <i class="material-icons">keyboard_arrow_down</i>
                             </a>
                         </h5>
@@ -33,16 +34,16 @@
                             <h6 class="title">{{$estudio->especialidad}}</h6>
                             <p class="category">{{$estudio->descripcion}}</p>
                         </div>
-                    </div>
-                    <div>
-                        <a href="{{route('estudios')}}/{{$estudio->id_estudio}}" rel="tooltip"
-                            class="btn btn-info btn-simple btn-xs" data-original-title="Modificar">
-                            <i class="material-icons icon-mode_edit"></i>
-                        </a>
-                        <a href="{{route('estudios')}}//{{$estudio->id_estudio}}" rel="tooltip"
-                            class="btn btn-danger btn-simple btn-xs" data-original-title="Eliminar">
-                            <i class="material-icons icon-delete"></i>
-                        </a>
+                        <div>
+                            <a href="{{route('estudios.show',$estudio->id_estudio)}}" rel="tooltip"
+                                class="btn btn-info btn-simple btn-sm p-1" data-original-title="Modificar">
+                                <i class="material-icons">create</i>
+                            </a>
+                            <a href="{{route('estudios.destroy',$estudio->id_estudio)}}" rel="tooltip"
+                                class="btn btn-danger btn-simple btn-sm p-1" data-original-title="Eliminar">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -76,7 +77,8 @@
 <div class="modal fade" id="nuevoEstudio" tabindex="-1" role="dialog" aria-labelledby="nuevoEstudio" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="post" id="formNuevoEstudio">
+            <form action="{{route('estudios.store')}}" method="post" id="formNuevoEstudio">
+                @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">Nuevo estudio</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -86,23 +88,48 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="especialidad" class="bmd-label-floating">Especialidad</label>
-                        <input type="text" class="form-control" id="especialidad" name="especialidad">
+                        <input type="text" class="form-control" id="especialidad" name="especialidad"
+                            value="{{old('especialidad')}}">
+                        @error('especialidad')
+                        <label id="especialidad-error" class="error"
+                            for="especialidad">{{$errors->first('especialidad')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="uni" class="bmd-label-floating">Universidad y/o Instituto</label>
-                        <input type="text" class="form-control" id="uni" name="universidad">
+                        <input type="text" class="form-control" id="uni" name="universidad"
+                            value="{{old('universidad')}}">
+                        @error('universidad')
+                        <label id="universidad-error" class="error"
+                            for="universidad">{{$errors->first('universidad')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="fecha_inicio" class="bmd-label-floating">Fecha inicio</label>
-                        <input type="text" class="form-control datepicker" id="fecha_inicio" name="fecha_inicio">
+                        <input type="text" class="form-control datepicker" id="fecha_inicio" name="fecha_inicio"
+                            value="{{old('fecha_inicio')}}">
+                        @error('fecha_inicio')
+                        <label id="fecha_inicio-error" class="error"
+                            for="fecha_inicio">{{$errors->first('fecha_inicio')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="fecha_fin" class="bmd-label-floating">Fecha fin</label>
-                        <input type="text" class="form-control datepicker" id="fecha_fin" name="fecha_fin">
+                        <input type="text" class="form-control datepicker" id="fecha_fin" name="fecha_fin"
+                            value="{{old('fecha_fin')}}">
+                        @error('fecha_fin')
+                        <label id="fecha_fin-error" class="error"
+                            for="fecha_fin">{{$errors->first('fecha_fin')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="descripcion" class="bmd-label-floating">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="5"></textarea>
+                        <textarea class="form-control" id="descripcion" name="descripcion"
+                            rows="5">{{old('descripcion')}}</textarea>
+                        @error('descripcion')
+                        <label id="descripcion-error" class="error"
+                            for="descripcion">{{$errors->first('descripcion')}}</label>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -116,7 +143,8 @@
 
 @if (isset($status))
 @if ($status==200)
-<div class="modal fade" id="nuevoEstudio" tabindex="-1" role="dialog" aria-labelledby="nuevoEstudio" aria-hidden="true">
+<div class="modal fade" id="EditarEstudio" tabindex="-1" role="dialog" aria-labelledby="nuevoEstudio"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" id="formNuevoEstudio">
@@ -167,7 +195,7 @@
     $(document).ready(function () {
         $('.datepicker').datetimepicker({
             // format:'L',
-            format: 'DD/MM/YYYY',
+            format: 'DD-MM-YYYY',
             locale:'es',
             icons: {
             time: "fa fa-clock-o",
@@ -181,7 +209,23 @@
             close: 'fa fa-remove'
             }
         });
-        ValidarFormulario("#formNuevoEstudio")
+        // ValidarFormulario("#formNuevoEstudio");
     });
 </script>
+@if ($errors->any())
+<script>
+    $('#nuevoEstudio').modal();
+</script>
+@endif
+@if (session('succes-save-estudio'))
+<script>
+    swal({
+title: '¡Buen trabajo!',
+text: '{{session("succes-save-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-success',
+type: 'success'
+}).catch(swal.noop)
+</script>
+@endif
 @endsection

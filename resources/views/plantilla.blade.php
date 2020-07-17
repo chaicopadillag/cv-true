@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <link rel="icon" type="image/ico" href="{{asset('img/app/favicon.ico')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>CV True</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name') }}</title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <link rel="canonical" href="" />
   <meta name="keywords" content="Creador de curriculúm vitae">

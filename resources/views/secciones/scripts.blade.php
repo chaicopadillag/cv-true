@@ -7,7 +7,7 @@
 <script src="{{url('/')}}/js/plugins/moment.min.js"></script>
 <script src="{{url('/')}}/js/plugins/moment.es.js"></script>
 <!--  Plugin for Sweet Alert -->
-{{-- <script src="{{url('/')}}/js/plugins/sweetalert2.js"></script> --}}
+<script src="{{url('/')}}/js/plugins/sweetalert2.js"></script>
 <!-- Forms Validations Plugin -->
 <script src="{{url('/')}}/js/plugins/jquery.validate.min.js"></script>
 <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
