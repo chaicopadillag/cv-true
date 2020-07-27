@@ -11,7 +11,8 @@
                 <img src="{{url('/')}}/img/usuarios/default.png" />
             </div>
             <div class="user-info">
-                <a data-toggle="collapse" href="#collapseExample" class="username">
+                <a data-toggle="collapse" href="#collapsePerfil" class="username"
+                    aria-expanded="{{request()->is('perfil') ? 'true' : 'false'}}">
                     <span>
                         @if(Auth::check())
                         {{Auth::user()->name}}
@@ -22,18 +23,18 @@
                     </span>
                 </a>
                 @if(Auth::check())
-                <div class="collapse" id="collapseExample">
+                <div class="collapse {{request()->is('perfil') ? 'show' : ''}}" id="collapsePerfil">
                     <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
+                        <li class="nav-item {{request()->is('perfil') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('perfil')}}">
                                 <span class="sidebar-mini"> MP </span>
                                 <span class="sidebar-normal"> Mi Perfil</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> S </span>
-                                <span class="sidebar-normal"> Settings </span>
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal"> Configuraciones </span>
                             </a>
                         </li>
                     </ul>
@@ -43,38 +44,38 @@
         </div>
         <ul class="nav">
             {{-- FIXME: solo admin --}}
-            <li class="nav-item {{request()->Is('usuarios') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('usuarios') ? 'active' : ''}}">
                 <a class="nav-link" href="{{url('/')}}/usuarios">
                     <i class="material-icons">people_alt</i>
                     <p>Usuarios</p>
                 </a>
             </li>
             {{-- TODO: usuarios --}}
-            <li class="nav-item {{request()->Is('estudios') ? 'active' : ''}}">
+            <li class="nav-item {{ request()->is('estudios') ? 'active' : ''}}">
                 <a class="nav-link" href="{{url('/')}}/estudios">
                     <i class="material-icons">school</i>
                     <p>Mis Estudios</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('experiencia') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('experiencia') ? 'active' : ''}}">
                 <a class="nav-link" href="{{url('/')}}/experiencia">
                     <i class="material-icons">business_center</i>
                     <p>Mis Experiencias</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('habilidades') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('habilidades') ? 'active' : ''}}">
                 <a class="nav-link" href="{{url('/')}}/habilidades">
                     <i class="material-icons">verified_user</i>
                     <p>Mis Habilidades</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('proyectos') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('proyectos') ? 'active' : ''}}">
                 <a class="nav-link" href="{{url('/')}}/proyectos">
                     <i class="material-icons">perm_media</i>
                     <p>Mis Proyectos</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('redsocial') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('redsocial') ? 'active' : ''}}">
                 <a class="nav-link" href="{{url('/')}}/redsocial">
                     <i class="material-icons">contacts</i>
                     <p>Mis Redes Sociales</p>
@@ -90,7 +91,7 @@
                 </a>
                 <div class="collapse" id="cv_modelos">
                     <ul class="nav">
-                        <li class="nav-item {{request()->Is('cvcard') ? 'active' : ''}}">
+                        <li class="nav-item {{request()->is('cvcard') ? 'active' : ''}}">
                             <a class="nav-link" data-toggle="collapse" href="{{url('/')}}/cvcard">
                                 <span class="sidebar-mini"> CV </span>
                                 <span class="sidebar-normal"> Card</span>
@@ -141,31 +142,32 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item {{request()->Is('acerca-de-cv-true') ? 'active' : ''}}">
+            {{-- FIXME: de CV TRUE --}}
+            <li class="nav-item {{request()->is('acerca-de-cv-true') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('acerca-de')}}">
                     <i class="material-icons">info</i>
                     <p>Acerca de CV True</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('ayuda') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('ayuda') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('ayuda')}}">
                     <i class="material-icons">help</i>
                     <p>Ayuda</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('aviso-legal') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('aviso-legal') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('aviso-legal')}}">
                     <i class="material-icons">warning</i>
                     <p>Aviso legal</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('politicas-de-privacidad') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('politicas-de-privacidad') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('politicas-de-privacidad')}}">
                     <i class="material-icons">vpn_lock</i>
                     <p>Polítcias de privacidad</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->Is('politicas-de-cookies') ? 'active' : ''}}">
+            <li class="nav-item {{request()->is('politicas-de-cookies') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('politicas-de-cookies')}}">
                     <i class="material-icons">sd_storage</i>
                     <p>Polítcias de Cookies</p>

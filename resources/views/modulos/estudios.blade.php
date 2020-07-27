@@ -16,60 +16,55 @@
         </div>
         <div class="card-body">
             <div id="accordion" role="tablist">
-                @foreach ($estudios as $estudio)
+                @php
+                $item=0
+                @endphp
+                @foreach ($estudios as $studio)
+                @php
+                $item++;
+                @endphp
                 <div class="card-collapse">
-                    <div class="card-header" role="tab" id="heading{{$estudio->id_estudio}}">
+                    <div class="card-header" role="tab" id="heading{{$studio->id_estudio}}">
                         <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#collapse{{$estudio->id_estudio}}" aria-expanded="true"
-                                aria-controls="collapse{{$estudio->id_estudio}}" class="collapsed">
-                                {{$estudio->especialidad}} | {{date('d-m-Y',strtotime($estudio->fecha_inicio))}} a
-                                {{ date('d-m-Y',strtotime($estudio->fecha_fin))}}
+                            <a data-toggle="collapse" href="#collapse{{$studio->id_estudio}}" aria-expanded="true"
+                                aria-controls="collapse{{$studio->id_estudio}}" class="collapsed">
+                                {{$studio->especialidad}} - {{$studio->universidad}}
                                 <i class="material-icons">keyboard_arrow_down</i>
                             </a>
                         </h5>
                     </div>
-                    <div id="collapse{{$estudio->id_estudio}}" class="collapse show" role="tabpanel"
-                        aria-labelledby="heading{{$estudio->id_estudio}}" data-parent="#accordion" style="">
+                    <div id="collapse{{$studio->id_estudio}}" class="collapse {{($item==1) ? 'show' : ''}}"
+                        role="tabpanel" aria-labelledby="heading{{$studio->id_estudio}}" data-parent="#accordion"
+                        style="">
                         <div class="card-body">
-                            <h6 class="title">{{$estudio->especialidad}}</h6>
-                            <p class="category">{{$estudio->descripcion}}</p>
+                            <p class="category">
+                                {{$studio->descripcion}}
+                            </p>
+                            <span
+                                class="badge badge-pill badge-dark float-right">{{date('d/m/Y',strtotime($studio->fecha_inicio))}}
+                                -
+                                {{ date('d/m/Y',strtotime($studio->fecha_fin))}}</span>
                         </div>
                         <div>
-                            <a href="{{route('estudios.show',$estudio->id_estudio)}}" rel="tooltip"
+                            <a href="{{route('estudios.show',$studio->id_estudio)}}" rel="tooltip"
                                 class="btn btn-info btn-simple btn-sm p-1" data-original-title="Modificar">
                                 <i class="material-icons">create</i>
                             </a>
-                            <a href="{{route('estudios.destroy',$estudio->id_estudio)}}" rel="tooltip"
-                                class="btn btn-danger btn-simple btn-sm p-1" data-original-title="Eliminar">
+                            <a href="#" data-form="form{{$studio->id_estudio}}" rel="tooltip"
+                                class="btn btn-danger btn-simple btn-sm p-1 btn_eliminar"
+                                data-original-title="Eliminar">
                                 <i class="material-icons">delete</i>
                             </a>
+                            <form id="form{{$studio->id_estudio}}"
+                                action="{{ route('estudios.destroy',$studio->id_estudio) }}" method="post"
+                                accept-charset="utf-8" style="display: none;">
+                                @method('DELETE')
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
                 @endforeach
-                <div class="card-collapse">
-                    <div class="card-header" role="tab" id="headingThree">
-                        <h5 class="mb-0">
-                            <a class="collapsed" data-toggle="collapse" href="#collapseThree3" aria-expanded="false"
-                                aria-controls="collapseThree3">
-                                Collapsible Group Item #3
-                                <i class="material-icons">keyboard_arrow_down</i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree"
-                        data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                            quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                            squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                            butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                            nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -77,7 +72,7 @@
 <div class="modal fade" id="nuevoEstudio" tabindex="-1" role="dialog" aria-labelledby="nuevoEstudio" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{route('estudios.store')}}" method="post" id="formNuevoEstudio">
+            <form class="form_estudio" action="{{route('estudios.store')}}" method="post" id="formNuevoEstudio">
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">Nuevo estudio</h4>
@@ -143,13 +138,16 @@
 
 @if (isset($status))
 @if ($status==200)
-<div class="modal fade" id="EditarEstudio" tabindex="-1" role="dialog" aria-labelledby="nuevoEstudio"
+<div class="modal fade" id="EditarEstudio" tabindex="-1" role="dialog" aria-labelledby="EditarEstudio"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="post" id="formNuevoEstudio">
+            <form class="form_estudio" action="{{route('estudios.update',$estudio->id_estudio)}}" method="post"
+                id="formEditarEstudio">
+                @method('PUT')
+                @csrf
                 <div class="modal-header">
-                    <h4 class="modal-title">Nuevo estudio</h4>
+                    <h4 class="modal-title">Editando estudio</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         <i class="material-icons">clear</i>
                     </button>
@@ -157,28 +155,53 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="especialidad" class="bmd-label-floating">Especialidad</label>
-                        <input type="text" class="form-control" id="especialidad" name="especialidad">
+                        <input type="text" class="form-control" id="especialidad" name="especialidad"
+                            value="{{($errors->first('especialidad')) ? old('especialidad') : $estudio->especialidad}}">
+                        @error('especialidad')
+                        <label id="especialidad-error" class="error"
+                            for="especialidad">{{$errors->first('especialidad')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="uni" class="bmd-label-floating">Universidad y/o Instituto</label>
-                        <input type="text" class="form-control" id="uni" name="universidad">
+                        <input type="text" class="form-control" id="uni" name="universidad"
+                            value="{{($errors->first('universidad')) ? old('universidad') : $estudio->universidad}}">
+                        @error('universidad')
+                        <label id="universidad-error" class="error"
+                            for="universidad">{{$errors->first('universidad')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="fecha_inicio" class="bmd-label-floating">Fecha inicio</label>
-                        <input type="text" class="form-control datepicker" id="fecha_inicio" name="fecha_inicio">
+                        <input type="text" class="form-control datepicker" id="fecha_inicio" name="fecha_inicio"
+                            value="{{($errors->first('fecha_inicio')) ? old('fecha_inicio') : date('d-m-Y',strtotime($studio->fecha_inicio))}}">
+                        @error('fecha_inicio')
+                        <label id="fecha_inicio-error" class="error"
+                            for="fecha_inicio">{{$errors->first('fecha_inicio')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="fecha_fin" class="bmd-label-floating">Fecha fin</label>
-                        <input type="text" class="form-control datepicker" id="fecha_fin" name="fecha_fin">
+                        <input type="text" class="form-control datepicker" id="fecha_fin" name="fecha_fin"
+                            value="{{($errors->first('fecha_fin')) ? old('fecha_fin') : date('d-m-Y',strtotime($studio->fecha_fin))}}">
+                        @error('fecha_fin')
+                        <label id="fecha_fin-error" class="error"
+                            for="fecha_fin">{{$errors->first('fecha_fin')}}</label>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="descripcion" class="bmd-label-floating">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="5"></textarea>
+                        <textarea class="form-control" id="descripcion" name="descripcion"
+                            rows="5">{{($errors->first('descripcion')) ? old('descripcion') : $estudio->descripcion}}</textarea>
+                        @error('descripcion')
+                        <label id="descripcion-error" class="error"
+                            for="descripcion">{{$errors->first('descripcion')}}</label>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -191,10 +214,10 @@
 
 @section('js')
 @parent
+<script src="{{asset('js/estudio.js')}}"></script>
 <script>
     $(document).ready(function () {
         $('.datepicker').datetimepicker({
-            // format:'L',
             format: 'DD-MM-YYYY',
             locale:'es',
             icons: {
@@ -209,16 +232,40 @@
             close: 'fa fa-remove'
             }
         });
-        // ValidarFormulario("#formNuevoEstudio");
+        ValidarFormulario("#formNuevoEstudio");
+        ValidarFormulario("#formEditarEstudio");
     });
 </script>
+
+@if (!isset($status))
 @if ($errors->any())
 <script>
     $('#nuevoEstudio').modal();
+
 </script>
 @endif
+@endif
+
+@if (isset($status))
+@if ($status==200)
+<script type="text/javascript">
+    $("#EditarEstudio").modal();
+</script>
+@else
+<script type="text/javascript">
+    swal({
+    title: '¡Ups! Error',
+    text: 'El registro que buscas no existe en la base de datos',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-warning',
+    type: 'warning'
+    }).catch(swal.noop)
+</script>
+@endif
+@endif
+{{-- save --}}
 @if (session('succes-save-estudio'))
-<script>
+<script type="text/javascript">
     swal({
 title: '¡Buen trabajo!',
 text: '{{session("succes-save-estudio")}}',
@@ -228,4 +275,99 @@ type: 'success'
 }).catch(swal.noop)
 </script>
 @endif
+@if (session('error-save-estudio'))
+<script type="text/javascript">
+    swal({
+title: '¡Ups, algo salio mal!',
+text: '{{session("error-save-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-danger',
+type: 'danger'
+}).catch(swal.noop)
+</script>
+@endif
+{{-- update --}}
+@if (session('succes-update-estudio'))
+<script type="text/javascript">
+    swal({
+title: '¡Buen trabajo!',
+text: '{{session("succes-update-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-success',
+type: 'success'
+}).catch(swal.noop)
+</script>
+@endif
+@if (session('error-update-estudio'))
+<script type="text/javascript">
+    swal({
+title: '¡Ups, algo salio mal!',
+text: '{{session("error-update-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-danger',
+type: 'danger'
+}).catch(swal.noop)
+</script>
+@endif
+{{-- delete --}}
+<script type="text/javascript">
+    $(document).on('click','.btn_eliminar',function(e){
+        e.preventDefault();
+        const formulario=$(this).attr('data-form');
+        swal({
+            title: '¿Esta seguro de eliminar?',
+            text: "Una ves eliminado su ESTUDIO no hay marcha atras",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Si, Eliminar!',
+            cancelButtonText: 'Cancelar',
+        }).then(function(result){
+            if(result.value){
+                $('#'+formulario).submit();
+            }else {
+                console.log('Ha cancelado la eliminación');
+            }
+
+        }).catch(swal.noop);
+
+    });
+</script>
+@if (session('success-delete-estudio'))
+<script type="text/javascript">
+    swal({
+title: '¡Buen trabajo!',
+text: '{{session("success-delete-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-success',
+type: 'success'
+}).catch(swal.noop);
+</script>
+@endif
+
+@if(session('error-delete-estudio'))
+<script type="text/javascript">
+    swal({
+title: '¡Ups, algo salio mal!',
+text: '{{session("error-delete-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-danger',
+type: 'danger'
+}).catch(swal.noop)
+</script>
+@endif
+
+@if(session('null-delete-estudio'))
+<script type="text/javascript">
+    swal({
+title: '¡Ups, algo salio mal!',
+text: '{{session("null-delete-estudio")}}',
+buttonsStyling: false,
+confirmButtonClass: 'btn btn-danger',
+type: 'danger'
+}).catch(swal.noop)
+</script>
+@endif
+
 @endsection

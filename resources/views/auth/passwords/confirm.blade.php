@@ -1,49 +1,95 @@
-@extends('layouts.app')
+@extends('auth.plantilla-auth')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+@section('titulo', __('Confirm Password'))
 
-                <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
+@section('pagina-active')
+<a class="navbar-brand" href="#">{{__('Confirma tu contraseña')}}</a>
+@endsection
 
-                    <form method="POST" action="{{ route('password.confirm') }}">
-                        @csrf
+@section('img-fondo'){{"'".asset('img/app/registro.jpg')."'"}}
+@endsection
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+@section('formulario')
+<div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+    <form class="form" method="POST" action="{{ route('password.confirm') }}" id="form_confirm">
+        @csrf
+        <div class="card card-login card-hidden">
+            <div class="card-header card-header-rose text-center">
+                <h4 class="card-title">{{__('Confirm Password')}}</h4>
+            </div>
+            <div class="card-body">
+                @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+                @endif
+                <p class="card-description text-center">{{ __('Please confirm your password before continuing.') }}</p>
+                <div class="bmd-form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="material-icons">lock_outline</i>
+                            </span>
                         </div>
+                        <input id="password" type="password"
+                            class="form-control @error('password') is-invalid @enderror" name="password" required
+                            autocomplete="current-password" placeholder="{{__('Password') }}">
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                        @error('password')
+                        <span class="invalid-feedback ml-5" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer justify-content-center">
+                <div class="row mt-3 w-100">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-block w-100">
+                            {{__('Confirm Password')}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+@endsection
+
+@section('auth-js')
+<script>
+    $("#form_email").validate({
+    rules: {
+        email: {
+            required: true,
+            minlength: 3,
+            maxlength: 30
+        }
+    },
+    highlight: function(element) {
+        $(element)
+        .closest(".form-group")
+        .removeClass("has-success")
+        .addClass("has-danger");
+    },
+    success: function(element) {
+        $(element)
+        .closest(".form-group")
+        .removeClass("has-danger")
+        .addClass("has-success");
+    },
+    errorPlacement: function(error, element) {
+        $(element).append(error);
+    }
+    });
+
+    $(document).ready(function() {
+        ValidarFormulario('#form_confirm');
+        md.checkFullPageBackgroundImage();
+        setTimeout(function() {
+            $('.card').removeClass('card-hidden');
+        }, 700);
+    });
+</script>
 @endsection

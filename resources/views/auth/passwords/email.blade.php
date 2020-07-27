@@ -1,47 +1,95 @@
-@extends('layouts.app')
+@extends('auth.plantilla-auth')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+@section('titulo', __('Reset Password'))
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+@section('pagina-active')
+<a class="navbar-brand" href="#">{{ __('Reset Password') }}</a>
+@endsection
+
+@section('img-fondo'){{"'".asset('img/app/login.jpg')."'"}}
+@endsection
+
+@section('formulario')
+<div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+    <form class="form" method="POST" action="{{ route('password.email') }}" id="form_email">
+        @csrf
+        <div class="card card-login card-hidden">
+            <div class="card-header card-header-rose text-center">
+                <h4 class="card-title">{{ __('Reset Password') }}</h4>
+            </div>
+            <div class="card-body">
+                @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+                @endif
+                <p class="card-description text-center">{{ __('Send Password Reset Link') }}</p>
+                <div class="bmd-form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="material-icons">email</i>
+                            </span>
                         </div>
-                    @endif
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+                            placeholder="{{ __('E-Mail Address') }}">
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer justify-content-center">
+                <div class="row mt-3 w-100">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-block w-100">
+                            {{__('Restablecer')}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+@endsection
+
+@section('auth-js')
+<script>
+    $("#form_email").validate({
+    rules: {
+        email: {
+            required: true,
+            minlength: 3,
+            maxlength: 30
+        }
+    },
+    highlight: function(element) {
+        $(element)
+        .closest(".form-group")
+        .removeClass("has-success")
+        .addClass("has-danger");
+    },
+    success: function(element) {
+        $(element)
+        .closest(".form-group")
+        .removeClass("has-danger")
+        .addClass("has-success");
+    },
+    errorPlacement: function(error, element) {
+        $(element).append(error);
+    }
+    });
+
+    $(document).ready(function() {
+        ValidarFormulario('#form_email');
+        md.checkFullPageBackgroundImage();
+        setTimeout(function() {
+            $('.card').removeClass('card-hidden');
+        }, 700);
+    });
+</script>
 @endsection

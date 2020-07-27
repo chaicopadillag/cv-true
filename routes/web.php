@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+
 App::setLocale('es');
 
 Route::get('/', function () {
     return view('modulos.inicio');
 })->name('inicio');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/usuarios', 'UsuariosController@index')->name('modulos.usuarios')->name('usuarios');
+Auth::routes()
+;
+Route::get('/perfil', 'UsuariosController@edit')->name('perfil');
+Route::resource('usuarios', 'UsuariosController');
 Route::resource('estudios', 'EstudiosController');
 
 //rutas estaticas

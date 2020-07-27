@@ -1,28 +1,43 @@
-@extends('layouts.app')
+@extends('auth.plantilla-auth')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+@section('titulo',__('Verify Your Email Address'))
 
-                <div class="card-body">
+@section('pagina-active')
+<a class="navbar-brand" href="{{route('login')}}">Verifica tu correo</a>
+@endsection
+
+@section('img-fondo'){{"'".asset('img/app/registro.jpg')."'"}}
+@endsection
+
+@section('formulario')
+        <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+            <div class="card card-login card-hidden">
+                <div class="card-header card-header-rose text-center">{{ __('Verify Your Email Address') }}</div>
+                <div class="card-bod">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
                     @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                    <div class="card-description text-center">{{ __('Before proceeding, please check your email for a verification link.') }}</div>
+                    <div class="card-description text-center">{{ __('If you did not receive the email') }}</div>
+                    <form class="d-flex justify-content-center mt-3 mb-3" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        <button type="submit" class="btn btn-primary">{{ __('click here to request another') }}</button>.
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+@endsection
+
+@section('auth-js')
+<script>
+    $(document).ready(function() {
+        md.checkFullPageBackgroundImage();
+        setTimeout(function() {
+            $('.card').removeClass('card-hidden');
+        }, 700);
+    });
+</script>
 @endsection

@@ -71,11 +71,22 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="#">Perfil</a>
-                        <a class="dropdown-item" href="#">Configuraciones</a>
+                        <a class="dropdown-item" href="{{route('perfil')}}">
+                            <i class="material-icons">person_outline</i>
+                            Perfil
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="material-icons">settings</i> Configuraciones
+                        </a>
                         <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="material-icons">lock_open</i>
+                            Bloquear
+                        </a>
                         <a class="dropdown-item" href="{{route('logout')}}"
-                            onclick="event.preventDefault(); document.getElementById('form_salir').submit();">{{ __('Logout') }}</a>
+                            onclick="event.preventDefault(); document.getElementById('form_salir').submit();">
+                            <i class="material-icons">exit_to_app</i>
+                            {{ __('Logout') }}</a>
                         <form action="{{route('logout')}}" id="form_salir" method="POST" style="display: none">
                             @csrf
                         </form>

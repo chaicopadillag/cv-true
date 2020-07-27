@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class EstudiosController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +20,8 @@ class EstudiosController extends Controller
      */
     public function index()
     {
-        $id_user = Auth::user()->id;
-        $estudios = EstudiosModel::where('id_user', $id_user)->get();
+        $id_user  = Auth::user()->id;
+        $estudios = EstudiosModel::where('id_user', $id_user)->orderBy('updated_at', 'DESC')->get();
 
         return \view('modulos.estudios', array('estudios' => $estudios));
     }
@@ -44,17 +44,17 @@ class EstudiosController extends Controller
      */
     public function store(EstudioRequest $request)
     {
-        $estudio = new EstudiosModel();
+        $estudio               = new EstudiosModel();
         $estudio->especialidad = $request['especialidad'];
-        $estudio->universidad = $request['universidad'];
+        $estudio->universidad  = $request['universidad'];
         $estudio->fecha_inicio = date('Y-m-d', strtotime($request['fecha_inicio']));
-        $estudio->fecha_fin = date('Y-m-d', strtotime($request['fecha_fin']));
-        $estudio->descripcion = $request['descripcion'];
-        $estudio->id_user = Auth::user()->id;
+        $estudio->fecha_fin    = date('Y-m-d', strtotime($request['fecha_fin']));
+        $estudio->descripcion  = $request['descripcion'];
+        $estudio->id_user      = Auth::user()->id;
         if ($estudio->save() > 0) {
-            return redirect('modulos.estudios')->with('succes-save-estudio', '¡Estudio agregado con exito!');
+            return redirect('/estudios')->with('succes-save-estudio', '¡Estudio agregado con exito!');
         } else {
-            return redirect('modulos.estudios')->with('error-save-estudio', 'Error al agregar estudio, intente de nuevo');
+            return redirect('/estudios')->with('error-save-estudio', 'Error al agregar estudio, intente de nuevo');
         }
     }
 
@@ -66,7 +66,22 @@ class EstudiosController extends Controller
      */
     public function show($id)
     {
-        //
+        $id_user  = Auth::user()->id;
+        $estudio  = EstudiosModel::where('id_estudio', $id)->where('id_user', $id_user)->first();
+        $estudios = EstudiosModel::where('id_user', $id_user)->orderBy('id_estudio', 'DESC')->get();
+
+        if ($estudio != null) {
+            return \view('modulos.estudios', array(
+                'status'   => 200,
+                'estudio'  => $estudio,
+                'estudios' => $estudios,
+            ));
+        } else {
+            return \view('modulos.estudios', array(
+                'status'   => 404,
+                'estudios' => $estudios,
+            ));
+        }
     }
 
     /**
@@ -75,10 +90,10 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -87,9 +102,22 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EstudioRequest $request, $id)
     {
-        //
+        $estudio = array(
+            'especialidad' => $request['especialidad'],
+            'universidad'  => $request['universidad'],
+            'fecha_inicio' => date('Y-m-d', strtotime($request['fecha_inicio'])),
+            'fecha_fin'    => date('Y-m-d', strtotime($request['fecha_fin'])),
+            'descripcion'  => $request['descripcion'],
+            'id_user'      => Auth::user()->id,
+        );
+
+        if (EstudiosModel::where('id_estudio', $id)->update($estudio) > 0) {
+            return redirect('/estudios')->with('succes-update-estudio', '¡Estudio actualizado con exito!');
+        } else {
+            return redirect('/estudios')->with('error-update-estudio', 'Error al actualizar estudio, intente de nuevo');
+        }
     }
 
     /**
@@ -100,6 +128,16 @@ class EstudiosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $studio = EstudiosModel::where('id_estudio', $id)->first();
+        if ($studio != null) {
+            if (EstudiosModel::where('id_estudio', $studio['id_estudio'])->delete() > 0) {
+                return redirect('/estudios')->with('success-delete-estudio', 'Estudio eliminado correctamente');
+            } else {
+                return redirect('/estudios')->with('error-delete-estudio', 'Error al eliminar Estudio, intenta de nuevo');
+            }
+        } else {
+            return redirect('/estudios')->with('null-delete-estudio', 'El registro que intenta eliminar no existe en la base de datos');
+        }
+
     }
 }
