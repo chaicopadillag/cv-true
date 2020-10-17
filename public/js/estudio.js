@@ -20,19 +20,15 @@ $("#formNuevoEstudio").validate({
         }
     },
     highlight: function(element) {
-        $(element)
-            .closest(".form-group")
-            .removeClass("has-success")
-            .addClass("has-danger");
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+        $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
     },
     success: function(element) {
-        $(element)
-            .closest(".form-group")
-            .removeClass("has-danger")
-            .addClass("has-success");
+        $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+        $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
     },
     errorPlacement: function(error, element) {
-        $(element).append(error);
+        $(element).closest('.form-group').append(error);
     }
 });
 $("#formEditarEstudio").validate({
@@ -57,18 +53,17 @@ $("#formEditarEstudio").validate({
         }
     },
     highlight: function(element) {
-        $(element)
-            .closest(".form-group")
-            .removeClass("has-success")
-            .addClass("has-danger");
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+        $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
     },
     success: function(element) {
-        $(element)
-            .closest(".form-group")
-            .removeClass("has-danger")
-            .addClass("has-success");
+        $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+        $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
     },
     errorPlacement: function(error, element) {
-        $(element).append(error);
+        $(element).closest('.form-group').append(error);
     }
+});
+$(document).on('focus', '.datepicker', function() {
+    $('.datepicker').parent().addClass('is-filled');
 });

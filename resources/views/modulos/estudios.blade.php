@@ -1,70 +1,74 @@
 @extends('plantilla')
+@section('titulo','Mis Estudios')
 @section('contenido')
 <div class="row">
-    <div class="card">
-        <div class="card-header card-header-rose card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">school</i>
-            </div>
-            <h4 class="card-title d-inline-block">Mis estudios</h4>
-            <button class="btn btn-primary float-right" data-toggle="modal" data-target="#nuevoEstudio">
-                <i class="material-icons">
-                    add
-                </i>
-                Agregar estudio
-            </button>
-        </div>
-        <div class="card-body">
-            <div id="accordion" role="tablist">
-                @php
-                $item=0
-                @endphp
-                @foreach ($estudios as $studio)
-                @php
-                $item++;
-                @endphp
-                <div class="card-collapse">
-                    <div class="card-header" role="tab" id="heading{{$studio->id_estudio}}">
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#collapse{{$studio->id_estudio}}" aria-expanded="true"
-                                aria-controls="collapse{{$studio->id_estudio}}" class="collapsed">
-                                {{$studio->especialidad}} - {{$studio->universidad}}
-                                <i class="material-icons">keyboard_arrow_down</i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapse{{$studio->id_estudio}}" class="collapse {{($item==1) ? 'show' : ''}}"
-                        role="tabpanel" aria-labelledby="heading{{$studio->id_estudio}}" data-parent="#accordion"
-                        style="">
-                        <div class="card-body">
-                            <p class="category">
-                                {{$studio->descripcion}}
-                            </p>
-                            <span
-                                class="badge badge-pill badge-dark float-right">{{date('d/m/Y',strtotime($studio->fecha_inicio))}}
-                                -
-                                {{ date('d/m/Y',strtotime($studio->fecha_fin))}}</span>
-                        </div>
-                        <div>
-                            <a href="{{route('estudios.show',$studio->id_estudio)}}" rel="tooltip"
-                                class="btn btn-info btn-simple btn-sm p-1" data-original-title="Modificar">
-                                <i class="material-icons">create</i>
-                            </a>
-                            <a href="#" data-form="form{{$studio->id_estudio}}" rel="tooltip"
-                                class="btn btn-danger btn-simple btn-sm p-1 btn_eliminar"
-                                data-original-title="Eliminar">
-                                <i class="material-icons">delete</i>
-                            </a>
-                            <form id="form{{$studio->id_estudio}}"
-                                action="{{ route('estudios.destroy',$studio->id_estudio) }}" method="post"
-                                accept-charset="utf-8" style="display: none;">
-                                @method('DELETE')
-                                @csrf
-                            </form>
-                        </div>
-                    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-rose card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">school</i>
                 </div>
-                @endforeach
+                <h4 class="card-title d-inline-block">Mis estudios</h4>
+                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#nuevoEstudio">
+                    <i class="material-icons">
+                        add
+                    </i>
+                    Agregar estudio
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="accordion" role="tablist">
+                    @php
+                    $item=0
+                    @endphp
+                    @foreach ($estudios as $studio)
+                    @php
+                    $item++;
+                    @endphp
+                    <div class="card-collapse">
+                        <div class="card-header" role="tab" id="heading{{$studio->id_estudio}}">
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" href="#collapse{{$studio->id_estudio}}"
+                                    aria-expanded="{{($item==1) ? 'true' : 'false'}}"
+                                    aria-controls="collapse{{$studio->id_estudio}}" class="collapsed">
+                                    {{$studio->especialidad}} - {{$studio->universidad}}
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse{{$studio->id_estudio}}" class="collapse {{($item==1) ? 'show' : ''}}"
+                            role="tabpanel" aria-labelledby="heading{{$studio->id_estudio}}" data-parent="#accordion"
+                            style="">
+                            <div class="card-body">
+                                <p class="category">
+                                    {{$studio->descripcion}}
+                                </p>
+                                <span
+                                    class="badge badge-pill badge-primary float-right">{{date('d/m/Y',strtotime($studio->fecha_inicio))}}
+                                    -
+                                    {{ date('d/m/Y',strtotime($studio->fecha_fin))}}</span>
+                            </div>
+                            <div>
+                                <a href="{{route('estudios.show',$studio->id_estudio)}}" rel="tooltip"
+                                    class="btn btn-link btn-success btn-simple btn-sm p-1" data-original-title="Modificar">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                                <a href="#" data-form="form{{$studio->id_estudio}}" rel="tooltip"
+                                    class="btn btn-link btn-danger btn-simple btn-sm p-1 btn_eliminar"
+                                    data-original-title="Eliminar">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                                <form id="form{{$studio->id_estudio}}"
+                                    action="{{ route('estudios.destroy',$studio->id_estudio) }}" method="post"
+                                    accept-charset="utf-8" style="display: none;">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
@@ -91,8 +95,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="uni" class="bmd-label-floating">Universidad y/o Instituto</label>
-                        <input type="text" class="form-control" id="uni" name="universidad"
+                        <label for="universidad" class="bmd-label-floating">Universidad y/o Instituto</label>
+                        <input type="text" class="form-control" id="universidad" name="universidad"
                             value="{{old('universidad')}}">
                         @error('universidad')
                         <label id="universidad-error" class="error"
@@ -215,7 +219,7 @@
 @section('js')
 @parent
 <script src="{{asset('js/estudio.js')}}"></script>
-<script>
+<script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('.datepicker').datetimepicker({
             format: 'DD-MM-YYYY',
@@ -232,142 +236,119 @@
             close: 'fa fa-remove'
             }
         });
-        ValidarFormulario("#formNuevoEstudio");
-        ValidarFormulario("#formEditarEstudio");
     });
-</script>
 
 @if (!isset($status))
-@if ($errors->any())
-<script>
-    $('#nuevoEstudio').modal();
+    @if ($errors->any())
+        $('#nuevoEstudio').modal();
 
-</script>
-@endif
+    @endif
 @endif
 
 @if (isset($status))
-@if ($status==200)
-<script type="text/javascript">
+    @if ($status==200)
     $("#EditarEstudio").modal();
-</script>
-@else
-<script type="text/javascript">
+    @else
     swal({
-    title: '¡Ups! Error',
-    text: 'El registro que buscas no existe en la base de datos',
-    buttonsStyling: false,
-    confirmButtonClass: 'btn btn-warning',
-    type: 'warning'
-    }).catch(swal.noop)
-</script>
-@endif
+        title: '¡Ups! Error',
+        text: 'El registro que buscas no existe en la base de datos',
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-warning',
+        type: 'warning'
+        }).catch(swal.noop);
+    @endif
 @endif
 {{-- save --}}
 @if (session('succes-save-estudio'))
-<script type="text/javascript">
     swal({
-title: '¡Buen trabajo!',
-text: '{{session("succes-save-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-success',
-type: 'success'
-}).catch(swal.noop)
-</script>
+    title: '¡Buen trabajo!',
+    text: '{{session("succes-save-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-success',
+    type: 'success'
+    }).catch(swal.noop);
 @endif
+
 @if (session('error-save-estudio'))
-<script type="text/javascript">
     swal({
-title: '¡Ups, algo salio mal!',
-text: '{{session("error-save-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-danger',
-type: 'danger'
-}).catch(swal.noop)
-</script>
+    title: '¡Ups, algo salio mal!',
+    text: '{{session("error-save-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-danger',
+    type: 'danger'
+    }).catch(swal.noop);
 @endif
 {{-- update --}}
 @if (session('succes-update-estudio'))
-<script type="text/javascript">
     swal({
-title: '¡Buen trabajo!',
-text: '{{session("succes-update-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-success',
-type: 'success'
-}).catch(swal.noop)
-</script>
+    title: '¡Buen trabajo!',
+    text: '{{session("succes-update-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-success',
+    type: 'success'
+    }).catch(swal.noop);
 @endif
+
 @if (session('error-update-estudio'))
-<script type="text/javascript">
     swal({
-title: '¡Ups, algo salio mal!',
-text: '{{session("error-update-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-danger',
-type: 'danger'
-}).catch(swal.noop)
-</script>
+    title: '¡Ups, algo salio mal!',
+    text: '{{session("error-update-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-danger',
+    type: 'danger'
+    }).catch(swal.noop);
 @endif
 {{-- delete --}}
-<script type="text/javascript">
-    $(document).on('click','.btn_eliminar',function(e){
-        e.preventDefault();
-        const formulario=$(this).attr('data-form');
-        swal({
-            title: '¿Esta seguro de eliminar?',
-            text: "Una ves eliminado su ESTUDIO no hay marcha atras",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Si, Eliminar!',
-            cancelButtonText: 'Cancelar',
-        }).then(function(result){
-            if(result.value){
-                $('#'+formulario).submit();
-            }else {
-                console.log('Ha cancelado la eliminación');
-            }
-
-        }).catch(swal.noop);
-
-    });
-</script>
-@if (session('success-delete-estudio'))
-<script type="text/javascript">
+$(document).on('click','.btn_eliminar',function(e){
+    e.preventDefault();
+    const formulario=$(this).attr('data-form');
     swal({
-title: '¡Buen trabajo!',
-text: '{{session("success-delete-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-success',
-type: 'success'
-}).catch(swal.noop);
-</script>
+        title: '¿Esta seguro de eliminar?',
+        text: "Una ves eliminado su ESTUDIO no hay marcha atras",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        confirmButtonText: 'Si, Eliminar!',
+        cancelButtonText: 'Cancelar',
+    }).then(function(result){
+        if(result.value){
+            $('#'+formulario).submit();
+        }else {
+            console.log('Ha cancelado la eliminación');
+        }
+
+    }).catch(swal.noop);
+
+});
+@if (session('success-delete-estudio'))
+    swal({
+    title: '¡Buen trabajo!',
+    text: '{{session("success-delete-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-success',
+    type: 'success'
+    }).catch(swal.noop);
 @endif
 
 @if(session('error-delete-estudio'))
-<script type="text/javascript">
     swal({
-title: '¡Ups, algo salio mal!',
-text: '{{session("error-delete-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-danger',
-type: 'danger'
-}).catch(swal.noop)
-</script>
+    title: '¡Ups, algo salio mal!',
+    text: '{{session("error-delete-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-danger',
+    type: 'danger'
+    }).catch(swal.noop);
 @endif
 
 @if(session('null-delete-estudio'))
-<script type="text/javascript">
     swal({
-title: '¡Ups, algo salio mal!',
-text: '{{session("null-delete-estudio")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-danger',
-type: 'danger'
-}).catch(swal.noop)
-</script>
+    title: '¡Ups, algo salio mal!',
+    text: '{{session("null-delete-estudio")}}',
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-danger',
+    type: 'danger'
+    }).catch(swal.noop);
 @endif
-
+</script>
 @endsection

@@ -34,7 +34,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script>, hecho con <i class="material-icons">favorite</i> por
-            <a href="{{url('https://bit.ly/chaicopadillag')}}" target="_blank">G. Chaico</a> para ayudarte.
+            <a href="{{env('URL_CREADOR')}}" target="_blank">{{env('APP_CREADOR')}}</a> para ayudarte.
         </div>
     </div>
 </footer>

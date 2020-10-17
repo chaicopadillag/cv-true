@@ -1,5 +1,5 @@
 <div class="sidebar" data-color="rose" data-background-color="black" data-image="{{asset('/img/app/sidebar2.jpg')}}">
-    <div class="logo"><a href="{{url('/')}}" class="simple-text logo-mini">
+    <div class="logo"><a href="{{route('inicio')}}" class="simple-text logo-mini">
             CV
         </a>
         <a href="{{url('/')}}" class="simple-text logo-normal">
@@ -8,11 +8,11 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="{{url('/')}}/img/usuarios/default.png" />
+                <img src="{{asset(Auth::user()->foto??'img/usuarios/default.png')}}" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapsePerfil" class="username"
-                    aria-expanded="{{request()->is('perfil') ? 'true' : 'false'}}">
+                    aria-expanded="{{request()->is('perfil','configuracion')  ? 'true' : 'false'}}">
                     <span>
                         @if(Auth::check())
                         {{Auth::user()->name}}
@@ -23,18 +23,18 @@
                     </span>
                 </a>
                 @if(Auth::check())
-                <div class="collapse {{request()->is('perfil') ? 'show' : ''}}" id="collapsePerfil">
+                <div class="collapse {{request()->is('perfil','configuracion') ? 'show' : ''}}" id="collapsePerfil">
                     <ul class="nav">
                         <li class="nav-item {{request()->is('perfil') ? 'active' : ''}}">
                             <a class="nav-link" href="{{route('perfil')}}">
-                                <span class="sidebar-mini"> MP </span>
-                                <span class="sidebar-normal"> Mi Perfil</span>
+                                <span class="sidebar-mini">MP</span>
+                                <span class="sidebar-normal">Mi Perfil</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal"> Configuraciones </span>
+                        <li class="nav-item {{request()->is('configuracion') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('config')}}">
+                                <span class="sidebar-mini">C</span>
+                                <span class="sidebar-normal">Configuraciones </span>
                             </a>
                         </li>
                     </ul>
@@ -44,41 +44,51 @@
         </div>
         <ul class="nav">
             {{-- FIXME: solo admin --}}
-            <li class="nav-item {{request()->is('usuarios') ? 'active' : ''}}">
-                <a class="nav-link" href="{{url('/')}}/usuarios">
-                    <i class="material-icons">people_alt</i>
-                    <p>Usuarios</p>
-                </a>
-            </li>
+            @if (Auth::check())
+                @if (Auth::user()->rol === 1)
+                <li class="nav-item {{request()->is('usuarios') ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('usuarios.index')}}/">
+                        <i class="material-icons">people_alt</i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                @endif
+            @endif
             {{-- TODO: usuarios --}}
             <li class="nav-item {{ request()->is('estudios') ? 'active' : ''}}">
-                <a class="nav-link" href="{{url('/')}}/estudios">
+                <a class="nav-link" href="{{route('estudios.index')}}">
                     <i class="material-icons">school</i>
                     <p>Mis Estudios</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->is('experiencia') ? 'active' : ''}}">
-                <a class="nav-link" href="{{url('/')}}/experiencia">
+            <li class="nav-item {{request()->is('experiencias') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('experiencias.index')}}">
                     <i class="material-icons">business_center</i>
                     <p>Mis Experiencias</p>
                 </a>
             </li>
             <li class="nav-item {{request()->is('habilidades') ? 'active' : ''}}">
-                <a class="nav-link" href="{{url('/')}}/habilidades">
+                <a class="nav-link" href="{{route('habilidades.index')}}">
                     <i class="material-icons">verified_user</i>
                     <p>Mis Habilidades</p>
                 </a>
             </li>
             <li class="nav-item {{request()->is('proyectos') ? 'active' : ''}}">
-                <a class="nav-link" href="{{url('/')}}/proyectos">
+                <a class="nav-link" href="{{route('proyectos.index')}}">
                     <i class="material-icons">perm_media</i>
                     <p>Mis Proyectos</p>
                 </a>
             </li>
-            <li class="nav-item {{request()->is('redsocial') ? 'active' : ''}}">
-                <a class="nav-link" href="{{url('/')}}/redsocial">
+            <li class="nav-item {{request()->is('contactos') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('contactos.index')}}">
                     <i class="material-icons">contacts</i>
-                    <p>Mis Redes Sociales</p>
+                    <p>Contactos</p>
+                </a>
+            </li>
+            <li class="nav-item {{request()->is('software') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('software.index')}}">
+                    <i class="material-icons">desktop_mac</i>
+                    <p>Mis Software's</p>
                 </a>
             </li>
             {{-- FIXME: modelos de CVs --}}
@@ -89,58 +99,48 @@
                         <b class="caret"></b>
                     </p>
                 </a>
+                @if (Auth::check())
                 <div class="collapse" id="cv_modelos">
                     <ul class="nav">
-                        <li class="nav-item {{request()->is('cvcard') ? 'active' : ''}}">
-                            <a class="nav-link" data-toggle="collapse" href="{{url('/')}}/cvcard">
-                                <span class="sidebar-mini"> CV </span>
-                                <span class="sidebar-normal"> Card</span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cv-card')}}" target="_blank">
+                                <span class="sidebar-mini">CV</span>
+                                <span class="sidebar-normal">Card</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cv-material')}}" target="_blank">
+                                <span class="sidebar-mini">CV</span>
+                                <span class="sidebar-normal">Material Desing</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cv-moderno')}}" target="_blank">
+                                <span class="sidebar-mini">CV</span>
+                                <span class="sidebar-normal">Moderno</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cv-dark')}}" target="_blank">
+                                <span class="sidebar-mini">CV</span>
+                                <span class="sidebar-normal">Dark</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cv-clasica')}}" target="_blank">
+                                <span class="sidebar-mini">CV</span>
+                                <span class="sidebar-normal">Clásica</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="components/buttons.html">
-                                <span class="sidebar-mini"> CV </span>
-                                <span class="sidebar-normal"> Material Desing </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/grid.html">
-                                <span class="sidebar-mini"> GS </span>
-                                <span class="sidebar-normal"> Grid System </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/panels.html">
-                                <span class="sidebar-mini"> P </span>
-                                <span class="sidebar-normal"> Panels </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/sweet-alert.html">
-                                <span class="sidebar-mini"> SA </span>
-                                <span class="sidebar-normal"> Sweet Alert </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/notifications.html">
-                                <span class="sidebar-mini"> N </span>
-                                <span class="sidebar-normal"> Notifications </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/icons.html">
-                                <span class="sidebar-mini"> I </span>
-                                <span class="sidebar-normal"> Icons </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/typography.html">
-                                <span class="sidebar-mini"> T </span>
-                                <span class="sidebar-normal"> Typography </span>
+                            <a class="nav-link" href="{{route('cv-gray')}}" target="_blank">
+                                <span class="sidebar-mini">CV</span>
+                                <span class="sidebar-normal">Gray</span>
                             </a>
                         </li>
                     </ul>
                 </div>
+                @endif
             </li>
             {{-- FIXME: de CV TRUE --}}
             <li class="nav-item {{request()->is('acerca-de-cv-true') ? 'active' : ''}}">

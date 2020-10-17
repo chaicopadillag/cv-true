@@ -3,7 +3,7 @@ class Ayudas
 {
     public static function SubirImagenServidor($foto, $ruta, $ancho_nuevo = 1200, $alto_nuevo = 764)
     {
-        $aletoria                    = mt_rand(1, 999);
+        $aletoria                    = mt_rand(1, 9999);
         $img                         = $ruta . $aletoria . "." . $foto->guessExtension();
         list($ancho_org, $alto_orig) = getimagesize($foto);
         if ($foto->guessExtension() == 'jpeg') {

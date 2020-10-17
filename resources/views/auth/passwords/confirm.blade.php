@@ -11,7 +11,7 @@
 
 @section('formulario')
 <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-    <form class="form" method="POST" action="{{ route('password.confirm') }}" id="form_confirm">
+    <form class="form" method="POST" action="{{ route('password.confirm') }}" id="confirm_password">
         @csrf
         <div class="card card-login card-hidden">
             <div class="card-header card-header-rose text-center">
@@ -24,7 +24,7 @@
                 </div>
                 @endif
                 <p class="card-description text-center">{{ __('Please confirm your password before continuing.') }}</p>
-                <div class="bmd-form-group">
+                <div class="bmd-form-group form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -59,33 +59,26 @@
 
 @section('auth-js')
 <script>
-    $("#form_email").validate({
+    $("#confirm_password").validate({
     rules: {
-        email: {
-            required: true,
-            minlength: 3,
-            maxlength: 30
-        }
+    password: {
+    required: true
+    }
     },
-    highlight: function(element) {
-        $(element)
-        .closest(".form-group")
-        .removeClass("has-success")
-        .addClass("has-danger");
+    highlight: function (element) {
+    $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+    $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
     },
-    success: function(element) {
-        $(element)
-        .closest(".form-group")
-        .removeClass("has-danger")
-        .addClass("has-success");
+    success: function (element) {
+    $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+    $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
     },
-    errorPlacement: function(error, element) {
-        $(element).append(error);
+    errorPlacement: function (error, element) {
+    $(element).closest('.form-group').append(error);
     }
     });
-
+    
     $(document).ready(function() {
-        ValidarFormulario('#form_confirm');
         md.checkFullPageBackgroundImage();
         setTimeout(function() {
             $('.card').removeClass('card-hidden');

@@ -31,7 +31,7 @@
                         </div>
                     </span> --}}
                 <div class="bmd-form-group">
-                    <div class="input-group">
+                    <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="material-icons">email</i>
@@ -72,8 +72,9 @@
                                 <i class="material-icons">lock_outline</i>
                             </span>
                         </div>
-                        <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password') }}" equalTo='#password'>
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                            required autocomplete="new-password" placeholder="{{ __('Confirm Password') }}"
+                            equalTo='#password'>
                         @error('password_confirmation')
                         <span class="invalid-feedback ml-4" role="alert">
                             <strong>{{ $message }}</strong>

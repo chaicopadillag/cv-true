@@ -24,7 +24,7 @@
                 </div>
                 @endif
                 <p class="card-description text-center">{{ __('Send Password Reset Link') }}</p>
-                <div class="bmd-form-group">
+                <div class="bmd-form-group form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -61,31 +61,29 @@
 <script>
     $("#form_email").validate({
     rules: {
-        email: {
-            required: true,
-            minlength: 3,
-            maxlength: 30
-        }
+    email: {
+    required: true,
+    minlength: 3,
+    maxlength: 30
+    },
+    password: {
+    required: true
+    }
     },
     highlight: function(element) {
-        $(element)
-        .closest(".form-group")
-        .removeClass("has-success")
-        .addClass("has-danger");
+    $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+    $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
     },
     success: function(element) {
-        $(element)
-        .closest(".form-group")
-        .removeClass("has-danger")
-        .addClass("has-success");
+    $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+    $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
     },
     errorPlacement: function(error, element) {
-        $(element).append(error);
+    $(element).closest('.form-group').append(error);
     }
     });
 
     $(document).ready(function() {
-        ValidarFormulario('#form_email');
         md.checkFullPageBackgroundImage();
         setTimeout(function() {
             $('.card').removeClass('card-hidden');

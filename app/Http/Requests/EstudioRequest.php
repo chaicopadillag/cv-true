@@ -25,10 +25,10 @@ class EstudioRequest extends FormRequest
     {
         return [
             'especialidad' => 'required|min:5|string|max:255',
-            'universidad' => 'required|min:5|string|max:255',
-            'fecha_inicio' => 'required|date|date_format:d-m-Y',
-            'fecha_fin' => 'required|date|date_format:d-m-Y',
-            'descripcion' => 'required|min:10|max:1000',
+            'universidad'  => 'required|min:5|string|max:255',
+            'fecha_inicio' => ['required', 'date', 'date_format:d-m-Y', 'before:fecha_fin'],
+            'fecha_fin'    => ['required', 'date', 'date_format:d-m-Y', 'before:fecha_actual'],
+            'descripcion'  => 'required|min:10|max:1000',
         ];
     }
     // public function messages()

@@ -40,15 +40,15 @@
                             <input type="text" class="form-control" placeholder="First Name...">
                         </div>
                     </span> --}}
-                <div class="bmd-form-group">
+                <div class="form-group has-default">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="material-icons">email</i>
                             </span>
                         </div>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" autocomplete="email" autofocus required
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                            name="email" value="{{ old('email') }}" autocomplete="email" autofocus
                             placeholder="{{ __('E-Mail Address') }}">
 
                         @error('email')
@@ -58,7 +58,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="bmd-form-group">
+                <div class="form-group has-default">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -67,7 +67,7 @@
                         </div>
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password"
-                            autocomplete="current-password" required placeholder="{{ __('Password') }}">
+                            autocomplete="current-password" placeholder="{{ __('Password') }}">
                         @error('password')
                         <span class="invalid-feedback ml-4" role="alert">
                             <strong>{{ $message }}</strong>
@@ -75,7 +75,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="bmd-form-group">
+                <div class="form-group has-default">
                     <div class="form-group row">
                         <div class="col-md-12 ml-2 mt-3">
                             <div class="form-check">
@@ -116,7 +116,6 @@
 <script src="{{asset('js/login.js')}}"></script>
 <script>
     $(document).ready(function() {
-        ValidarFormulario('#form_login');
         md.checkFullPageBackgroundImage();
         setTimeout(function() {
             $('.card').removeClass('card-hidden');

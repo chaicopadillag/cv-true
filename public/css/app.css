@@ -24929,21 +24929,21 @@ select.selectpicker {
         display: none !important;
     }
 }
-.tim-row{
+.tim-row {
     margin-bottom: 20px;
 }
 
 .tim-white-buttons {
     background-color: #777777;
 }
-.typography-line{
+.typography-line {
     padding-left: 25%;
     margin-bottom: 35px;
     position: relative;
     display: block;
     width: 100%;
 }
-.typography-line span{
+.typography-line span {
     bottom: 10px;
     color: #c0c1c2;
     display: block;
@@ -24955,20 +24955,20 @@ select.selectpicker {
     width: 260px;
     text-transform: none;
 }
-.tim-row{
+.tim-row {
     padding-top: 60px;
 }
-.tim-row h3{
+.tim-row h3 {
     margin-top: 0;
 }
 
-.tim-typo{
+.tim-typo {
     padding-left: 25%;
     margin-bottom: 40px;
     position: relative;
     width: 100%;
 }
-.tim-typo .tim-note{
+.tim-typo .tim-note {
     bottom: 5px;
     color: #c0c1c2;
     display: block;
@@ -24980,13 +24980,76 @@ select.selectpicker {
     position: absolute;
     width: 260px;
 }
+.noUi-tooltip {
+    width: 50px;
+    text-align: center;
+    margin-top: 14px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #e91e63;
+    border-color: #e91e63;
+    box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14),
+        0 3px 1px -2px rgba(156, 39, 176, 0.2),
+        0 1px 5px 0 rgba(156, 39, 176, 0.12);
+    font-size: 12px;
+    margin-left: -13px;
+}
+.noUi-tooltip::after {
+    content: "%";
+}
+.skills::before {
+    content: "0";
+    background-color: #e91e63;
+    padding: 0px 6px;
+    border-radius: 3px;
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    left: 10px;
+    margin-top: -10px;
+}
+.skills::after {
+    content: "100";
+    background-color: #e91e63;
+    padding: 0px 4px;
+    border-radius: 3px;
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    margin-top: -14px;
+}
+
+.skills2::before {
+    content: "0";
+    background-color: #e91e63;
+    padding: 0px 6px;
+    border-radius: 3px;
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    left: 0px;
+    margin-top: 4px;
+}
+.skills2::after {
+    content: "100";
+    background-color: #e91e63;
+    padding: 0px 4px;
+    border-radius: 3px;
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    right: 0px;
+    margin-top: 4px;
+}
+
 @font-face {
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url(http://localhost/cv-true/public/fonts/MaterialIcons-Regular.eot);
+  src: url(http://cv-true.local/fonts/MaterialIcons-Regular.eot);
   /* For IE6-8 */
-  src: local("Material Icons"), local("MaterialIcons-Regular"), url(http://localhost/cv-true/public/fonts/MaterialIcons-Regular.woff2) format("woff2"), url(http://localhost/cv-true/public/fonts/MaterialIcons-Regular.woff) format("woff"), url(http://localhost/cv-true/public/fonts/MaterialIcons-Regular.ttf) format("truetype");
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(http://cv-true.local/fonts/MaterialIcons-Regular.woff2) format("woff2"), url(http://cv-true.local/fonts/MaterialIcons-Regular.woff) format("woff"), url(http://cv-true.local/fonts/MaterialIcons-Regular.ttf) format("truetype");
 }
 
 .material-icons {

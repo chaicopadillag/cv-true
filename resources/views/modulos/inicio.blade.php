@@ -1,4 +1,5 @@
 @extends('plantilla')
+@section('titulo','Inicio')
 @section('contenido')
 <div class="row">
     <div class="col-md-8">
@@ -51,8 +52,8 @@
                 </a>
             </div>
             <div class="card-body">
-                <h6 class="card-category text-gray">Gerardo Chaico Padilla</h6>
-                <h4 class="card-title">Programador / Desarrollador Web</h4>
+                <h6 class="card-category text-gray"><a href="{{env('URL_CREADOR')}}" target="_blank">{{env('APP_CREADOR')}}</a></h6>
+                <h4 class="card-title">{{env('SKILL_CREADOR')}}</h4>
                 <p class="card-description">
                     Te gustaria crear un <span class="text-primary">Curriculum Vitae Moderno y
                         Profesional. </span> <b>¿No sabes por donde empezar? </b>Soy el creador de esta aplicación y te
@@ -65,7 +66,7 @@
                     Y felicidades por tu próximo empleo.<br>
                     <small class="text-muted">Aprovecha!!!. Gratis temporalmente.</small>
                 </p>
-                <a href="#" target="_blak" class="btn btn-rose btn-round">Ver Perfil</a>
+                <a href="{{env('APP_URL')}}demo" target="_blak" class="btn btn-rose btn-round">Ver CV Demo</a>
             </div>
         </div>
     </div>
@@ -78,7 +79,7 @@
                     <i class="material-icons">style</i>
                 </div>
                 <p class="card-category">Modelos CV's</p>
-                <h3 class="card-title">+10</h3>
+                <h3 class="card-title">+5</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">

@@ -1,4 +1,5 @@
 @extends('plantilla')
+@section('titulo','Usuarios')
 @section('contenido')
 <div class="row">
     <div class="col-md-12">
@@ -19,12 +20,12 @@
                                 <th class="text-center">#</th>
                                 <th>Foto</th>
                                 <th class="th-description">Nombre</th>
-                                <th class="th-description">Correo</th>
-                                <th class="text-left">Dirección</th>
-                                <th class="text-left">Télefono</th>
-                                <th class="text-left">Pais</th>
-                                <th class="text-left">Edad</th>
-                                <th>Estado civil</th>
+                                <th class="text-center">Correo</th>
+                                <th class="text-center">Dirección</th>
+                                <th class="text-center">Télefono</th>
+                                <th class="text-center">Pais</th>
+                                <th class="text-center">Edad</th>
+                                <th class="text-center">Estado civil</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +35,7 @@
                                 <td>
                                     <div class="">
                                         <img class="rounded-circle" width="60"
-                                            src="{{($user->foto!=null) ? url('/').'/'.$user->foto : url('/').'/img/usuarios/default.png'}}"
+                                            src="{{($user->foto!=null) ? asset($user->foto): asset('img/usuarios/default.png')}}"
                                             alt="{{$user->name}} {{$user->apellidos}}">
                                     </div>
                                 </td>
@@ -43,22 +44,22 @@
                                     <br />
                                     <small>{{$user->especialidad}}</small>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{$user->email}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{$user->direccion}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{$user->telefono}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{$user->pais}}
                                 </td>
-                                <td>
-                                    <small>&euro;</small>{{$user->edad}}
+                                <td class="text-center">
+                                    {{$user->edad}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{$user->estado_civil}}
                                 </td>
                             </tr>
@@ -66,6 +67,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{$usuarios->links()}}
             </div>
         </div>
     </div>

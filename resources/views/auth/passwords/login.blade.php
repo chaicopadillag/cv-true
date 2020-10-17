@@ -116,7 +116,6 @@
 <script src="{{asset('js/login.js')}}"></script>
 <script>
     $(document).ready(function() {
-        ValidarFormulario('#form_login');
         md.checkFullPageBackgroundImage();
         setTimeout(function() {
             $('.card').removeClass('card-hidden');

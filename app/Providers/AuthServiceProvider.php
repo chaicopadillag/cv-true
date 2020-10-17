@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\UsuarioPolicy;
+use App\Usuario;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Usuario::class => UsuarioPolicy::class,
     ];
 
     /**
@@ -25,6 +27,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('ver-usuarios', function ($user) {
+            return $user->isAdmin;
+        });
     }
 }

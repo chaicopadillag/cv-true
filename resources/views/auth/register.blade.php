@@ -143,7 +143,6 @@
 <script src="{{asset('js/registro.js')}}"></script>
 <script>
     $(document).ready(function() {
-        ValidarFormulario('#form_registro');
         md.checkFullPageBackgroundImage();
         setTimeout(function() {
             $('.card').removeClass('card-hidden');

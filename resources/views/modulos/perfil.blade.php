@@ -1,15 +1,14 @@
 @extends('plantilla')
+@section('titulo','Mi Perfil')
 @section('contenido')
 <div class="row">
     <div class="col-lg-8 col-md-10 col-sm-12">
         <div class="card">
-            <div class="card-header card-header-icon card-header-rose">
+            <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
-                    <i class="material-icons">perm_identity</i>
+                    <i class="material-icons">person</i>
                 </div>
-                <h4 class="card-title">Edita tu perfil -
-                    <small class="category">Completa tus datos personales</small>
-                </h4>
+                <h4 class="card-title d-inline-block">Mi Perfil - <small class="category">Completa tus datos personales</small></h4>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{route('usuarios.update',$user->id)}}" enctype="multipart/form-data"
@@ -18,14 +17,14 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-3 col-sm-4">
-                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            <div class=" form-group fileinput fileinput-new text-center" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail img-circle">
-                                    <img src="{{asset('img/usuarios/default.png')}}" alt="Foto de perfil"
+                                    <img src="{{$user->foto??asset('img/usuarios/default.png')}}" alt="Foto de perfil"
                                         class="img_foto">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                                 <div class="d-flex flex-wrap justify-content-center">
-                                    <small class="text-muted d-block w-100">Tamaño: 512 x 512 Max: 1MB</small>
+                                    <small class="text-muted d-block w-100">Tamaño: Min.512x512 - Max.764x764 1MB</small>
                                     <span class="btn btn-round btn-rose btn-file btn-block">
                                         <span class="fileinput-new">Agregar foto</span>
                                         <span class="fileinput-exists">Cambiar</span>
@@ -35,6 +34,9 @@
                                     <a href="#" class="btn btn-danger btn-round fileinput-exists btn-block"
                                         data-dismiss="fileinput"><i class="material-icons">delete_forever</i> Quitar</a>
                                 </div>
+                                @error('foto')
+                                <label for="foto" class="error">{{$message}}</label>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-8">
@@ -142,7 +144,7 @@
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="genero" value="1"
+                                    <input class="form-check-input" type="radio" name="genero" value="1" id="genero"
                                         {{$user->genero==1 ? 'checked' : ''}}>
                                     Másculino
                                     <span class="circle">
@@ -152,7 +154,7 @@
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="genero" value="2"
+                                    <input class="form-check-input" type="radio" name="genero" value="2" id="genero"
                                         {{$user->genero==2 ? 'checked' : ''}}>
                                     Femenino
                                     <span class="circle">
@@ -212,7 +214,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-rose pull-right">Actualizar perfil</button>
+                    <button type="submit" class="btn btn-rose float-right">Actualizar perfil</button>
                     <div class="clearfix"></div>
                 </form>
             </div>
@@ -225,32 +227,25 @@
 @parent
 <script src="{{asset('js/perfil.js')}}"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        ValidarFormulario('#form_perfil');
-    });
-</script>
 @if(session('perfil-save-success'))
-<script type="text/javascript">
     swal({
         title: '¡Buen trabajo!',
         text: '{{session("perfil-save-success")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-success',
-type: 'success'
-}).catch(swal.noop)
-</script>
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success',
+        type: 'success'
+        }).catch(swal.noop);
 @endif
 
 @if(session('perfil-save-error'))
-<script type="text/javascript">
     swal({
-        title: '¡Buen trabajo!',
+        title: '¡Ups, algo salio mal!',
         text: '{{session("perfil-save-error")}}',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-danger',
-type: 'danger'
-}).catch(swal.noop);
-</script>
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-danger',
+        type: 'danger'
+        }).catch(swal.noop);
 @endif
+</script>
 @endsection
 {{-- fin script --}}
