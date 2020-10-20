@@ -141,7 +141,7 @@
                     </div>
                     <div class="section-wrapper z-depth-1 wow fadeIn">
                         <div class="col s12 m12 l10" data-wow-delay="0.1s">
-                            <h2><i class="fa fa-keyboard"></i> Mis Herramientas / Software's</h2>
+                            <h2><i class="fa fa-keyboard"></i> Mis Herramientas / Software</h2>
                             <div class="row interests">
                                 @php
                                 $softwars=json_decode($softwares->softwares,true);

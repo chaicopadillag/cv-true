@@ -42,4 +42,5 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('js/material-dashboard.min.js')}}" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+{{-- <script src="http://chaicopadillag.com/js/fontawesome.min.js" data-auto-replace-svg="nest"></script> --}}
 <script src="{{asset('js/cv-true.js')}}"></script>

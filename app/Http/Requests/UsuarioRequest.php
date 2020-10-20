@@ -35,8 +35,8 @@ class UsuarioRequest extends FormRequest
             'genero'       => ['required', 'numeric', 'min:1', 'max:2'],
             'edad'         => ['required', 'numeric', 'min:14', 'max:200'],
             'estado_civil' => ['required', 'string', 'min:6', 'max:30'],
-            'frase'        => ['required', 'string', 'min:10', 'max:50'],
-            'resumen'      => ['required', 'string', 'min:30', 'max:255'],
+            'frase'        => ['required', 'string', 'min:10', 'max:100'],
+            'resumen'      => ['required', 'string', 'min:30', 'max:500'],
         ];
     }
     public function messages()

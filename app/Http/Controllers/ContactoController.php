@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contacto;
-use App\Http\Requests\ContactoEditRequest;
 use App\Http\Requests\ContactoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +23,7 @@ class ContactoController extends Controller
     {
         $red_social             = new Contacto;
         $red_social->pagina_web = $request->input('pagina_web');
+        $red_social->github   = $request->input('github');
         $red_social->linkedin   = $request->input('linkedin');
         $red_social->facebook   = $request->input('facebook');
         $red_social->instagram  = $request->input('instagram');
@@ -39,10 +39,11 @@ class ContactoController extends Controller
             return redirect('contactos')->with('error-save-contactos', 'Error al agregar red social, intente de nuevo');
         }
     }
-    public function update(ContactoEditRequest $request, $id)
+    public function update(ContactoRequest $request, $id)
     {
         $redes = array(
             'pagina_web' => $request->input('pagina_web'),
+            'github'=>$request->input(('github')),
             'linkedin'   => $request->input('linkedin'),
             'facebook'   => $request->input('facebook'),
             'instagram'  => $request->input('instagram'),

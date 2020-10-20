@@ -56,7 +56,7 @@ class UsuarioController extends Controller
 
         if (!empty($img['foto'])) {
             if (Auth::user()->foto != 'img/usuarios/default.png') {
-                unlink(Auth::user()->foto);
+                // unlink(Auth::user()->foto);
             }
             $foto = Ayudas::SubirImagenServidor($img['foto'], 'img/usuarios/user', 512, 512);
         } else {
@@ -98,3 +98,4 @@ class UsuarioController extends Controller
         }
     }
 }
+

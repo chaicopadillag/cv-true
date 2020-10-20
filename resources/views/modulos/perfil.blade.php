@@ -8,7 +8,8 @@
                 <div class="card-icon">
                     <i class="material-icons">person</i>
                 </div>
-                <h4 class="card-title d-inline-block">Mi Perfil - <small class="category">Completa tus datos personales</small></h4>
+                <h4 class="card-title d-inline-block">Mi Perfil - <small class="category">Completa tus datos
+                        personales</small></h4>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{route('usuarios.update',$user->id)}}" enctype="multipart/form-data"
@@ -24,7 +25,8 @@
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                                 <div class="d-flex flex-wrap justify-content-center">
-                                    <small class="text-muted d-block w-100">Tamaño: Min.512x512 - Max.764x764 1MB</small>
+                                    <small class="text-muted d-block w-100">Tamaño: Min.512x512 - Max.764x764
+                                        1MB</small>
                                     <span class="btn btn-round btn-rose btn-file btn-block">
                                         <span class="fileinput-new">Agregar foto</span>
                                         <span class="fileinput-exists">Cambiar</span>
@@ -227,7 +229,7 @@
 @parent
 <script src="{{asset('js/perfil.js')}}"></script>
 <script type="text/javascript">
-@if(session('perfil-save-success'))
+    @if(session('perfil-save-success'))
     swal({
         title: '¡Buen trabajo!',
         text: '{{session("perfil-save-success")}}',

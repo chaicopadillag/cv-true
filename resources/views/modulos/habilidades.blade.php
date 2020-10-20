@@ -18,6 +18,8 @@
                 </button>
             </div>
             <div class="card-body">
+                <p class="text-muted text-center">Agregar o modificar según el orden que quiera que aparezca en tu CV
+                </p>
                 <div id="accordion" role="tablist">
                     @php
                     $item=0
@@ -51,8 +53,10 @@
                                                 data-placement="bottom"
                                                 data-original-title="{{$skill->nivel}}% de Nivel"
                                                 style="margin-bottom: 0px; height: 8px">
-                                                <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
-                                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" role="progressbar" style="width: {{$skill->nivel}}%;">
+                                                <div class="progress-bar progress-bar-primary progress-bar-striped active"
+                                                    role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100" role="progressbar"
+                                                    style="width: {{$skill->nivel}}%;">
                                                     <span class="sr-only">{{$skill->nivel}}% de nivel</span>
                                                 </div>
                                             </div>
@@ -109,7 +113,8 @@
                     </div>
                     <div class="form-group">
                         <label for="nivel" class="bmd-label-floating">Nivel de 0 a 100%</label>
-                        <input class="form-control disabled" type="text" id="nivel" name="nivel" value="{{old('nivel')??0}}" range="[1,100]">
+                        <input class="form-control disabled" type="text" id="nivel" name="nivel"
+                            value="{{old('nivel')??0}}" range="[1,100]">
                         <div class="w-100">
                             <div id="sliderNivel" class="slider skills2"></div>
                         </div>
@@ -164,7 +169,8 @@
                     </div>
                     <div class="form-group">
                         <label for="nivel" class="bmd-label-floating">Nivel de 0 a 100%</label>
-                        <input class="form-control disabled" type="text" id="nivel2" name="nivel" value="{{old('nivel')??$habilidad->nivel}}" range="[1,100]">
+                        <input class="form-control disabled" type="text" id="nivel2" name="nivel"
+                            value="{{old('nivel')??$habilidad->nivel}}" range="[1,100]">
                         <div class="w-100">
                             <div id="sliderNivel2" class="slider skills2"></div>
                         </div>
@@ -198,7 +204,7 @@
 @parent
 <script src="{{asset('js/skills.js')}}"></script>
 <script type="text/javascript" charset="utf-8">
-@if (!isset($status))
+    @if (!isset($status))
     @if ($errors->any())
     $('#nuevoHabilidad').modal();
     @endif

@@ -1,18 +1,19 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?e1rfp6');
-  src:  url('fonts/icomoon.eot?e1rfp6#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?e1rfp6') format('truetype'),
-    url('fonts/icomoon.woff?e1rfp6') format('woff'),
-    url('fonts/icomoon.svg?e1rfp6#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?wep047');
+  src:  url('fonts/icomoon.eot?wep047#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?wep047') format('truetype'),
+    url('fonts/icomoon.woff?wep047') format('woff'),
+    url('fonts/icomoon.svg?wep047#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -24,185 +25,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-add:before {
-  content: "\e145";
-}
-.icon-brightness_1:before {
-  content: "\e3a6";
-}
-.icon-check:before {
-  content: "\e5ca";
-}
-.icon-close:before {
-  content: "\e5cd";
-}
-.icon-contacts:before {
-  content: "\e0ba";
-}
-.icon-mode_edit:before {
-  content: "\e254";
-}
-.icon-delete:before {
-  content: "\e872";
-}
-.icon-markunread:before {
-  content: "\e159";
-}
-.icon-face:before {
-  content: "\e87c";
-}
-.icon-fast_forward:before {
-  content: "\e01f";
-}
-.icon-fast_rewind:before {
-  content: "\e020";
-}
-.icon-favorite:before {
-  content: "\e87d";
-}
-.icon-get_app:before {
-  content: "\e884";
-}
-.icon-file_upload:before {
-  content: "\e2c6";
-}
-.icon-format_color_fill:before {
-  content: "\e23a";
-}
-.icon-question_answer:before {
-  content: "\e8af";
-}
-.icon-people:before {
-  content: "\e7fb";
-}
-.icon-group_add:before {
-  content: "\e7f0";
-}
-.icon-help_outline:before {
-  content: "\e8fd";
-}
-.icon-lock:before {
-  content: "\e897";
-}
-.icon-info_outline:before {
-  content: "\e88f";
-}
-.icon-keyboard_arrow_left:before {
-  content: "\e314";
-}
-.icon-keyboard_arrow_right:before {
-  content: "\e315";
-}
-.icon-keyboard_backspace:before {
-  content: "\e317";
-}
-.icon-print:before {
-  content: "\e8ad";
-}
-.icon-menu:before {
-  content: "\e5d2";
-}
-.icon-near_me:before {
-  content: "\e569";
-}
-.icon-notifications:before {
-  content: "\e7f4";
-}
-.icon-person:before {
-  content: "\e7fd";
-}
-.icon-priority_high:before {
-  content: "\e645";
-}
-.icon-recent_actors:before {
-  content: "\e03f";
-}
-.icon-visibility:before {
-  content: "\e8f4";
-}
-.icon-warning:before {
-  content: "\e002";
-}
-.icon-school:before {
-  content: "\e80c";
-}
-.icon-search:before {
-  content: "\e8b6";
-}
-.icon-security:before {
-  content: "\e32a";
-}
-.icon-settings:before {
-  content: "\e8b8";
-}
-.icon-supervisor_account:before {
-  content: "\e8d3";
-}
-.icon-thumb_up:before {
-  content: "\e8dc";
-}
-.icon-vpn_key:before {
-  content: "\e0da";
-}
-.icon-wb_sunny:before {
-  content: "\e430";
-}
-.icon-home:before {
+.icon-tiktok:before {
   content: "\e900";
 }
-.icon-newspaper:before {
-  content: "\e904";
-}
-.icon-images:before {
-  content: "\e90e";
-}
-.icon-headphones:before {
-  content: "\e910";
-}
-.icon-profile:before {
-  content: "\e923";
-}
-.icon-coin-dollar:before {
-  content: "\e93b";
-}
-.icon-address-book:before {
-  content: "\e944";
-}
-.icon-keyboard:before {
-  content: "\e955";
-}
-.icon-mobile:before {
-  content: "\e958";
-}
-.icon-user-tie:before {
-  content: "\e976";
-}
-.icon-magic-wand:before {
-  content: "\e997";
-}
-.icon-briefcase:before {
-  content: "\e9ae";
-}
-.icon-accessibility:before {
-  content: "\e9b2";
-}
-.icon-sphere:before {
-  content: "\e9c9";
-}
-.icon-eye:before {
-  content: "\e9ce";
-}
-.icon-keyboard_arrow_down:before {
-  content: "\ea43";
-}
-.icon-share2:before {
-  content: "\ea82";
-}
-.icon-google-plus:before {
-  content: "\ea8b";
+.icon-link:before {
+  content: "\e9cb";
 }
 .icon-facebook:before {
   content: "\ea90";
+}
+.icon-instagram:before {
+  content: "\ea92";
 }
 .icon-spotify:before {
   content: "\ea94";
@@ -210,10 +43,13 @@
 .icon-twitter:before {
   content: "\ea96";
 }
+.icon-github:before {
+  content: "\eab0";
+}
 .icon-tumblr:before {
   content: "\eab9";
 }
-.icon-linkedin:before {
+.icon-linkedin2:before {
   content: "\eaca";
 }
 .icon-pinterest:before {

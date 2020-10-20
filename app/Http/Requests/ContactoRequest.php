@@ -24,15 +24,16 @@ class ContactoRequest extends FormRequest
     public function rules()
     {
         return [
-            'pagina_web' => ['unique:redes_sociales', /*'active_url',*/'max:100'],
-            'linkedin'   => ['unique:redes_sociales', 'required', /*'active_url',*/'max:100'],
-            'facebook'   => ['unique:redes_sociales', 'required', /*'active_url',*/'max:100'],
-            'instagram'  => ['unique:redes_sociales', 'required', /*'active_url',*/'max:100'],
-            'twitter'    => ['unique:redes_sociales', /*'active_url',*/'max:100'],
-            'tumblr'     => ['unique:redes_sociales', /*'active_url',*/'max:100'],
-            'pinterest'  => ['unique:redes_sociales', /*'active_url',*/'max:100'],
-            'spotify'    => ['unique:redes_sociales', /*'active_url',*/'max:100'],
-            'tiktok'     => ['unique:redes_sociales', /*'active_url',*/'max:100'],
+            'pagina_web' => [ /*'active_url',*/'max:100'],
+            'github'   => [ 'required', /*'active_url',*/'max:100'],
+            'linkedin'   => [ 'required', /*'active_url',*/'max:100'],
+            'facebook'   => [ 'required', /*'active_url',*/'max:100'],
+            'instagram'  => [  /*'active_url',*/'max:100'],
+            'twitter'    => [ /*'active_url',*/'max:100'],
+            'tumblr'     => [ /*'active_url',*/'max:100'],
+            'pinterest'  => [ /*'active_url',*/'max:100'],
+            'spotify'    => [ /*'active_url',*/'max:100'],
+            'tiktok'     => [ /*'active_url',*/'max:100'],
         ];
     }
 }

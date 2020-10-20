@@ -53,23 +53,37 @@ $("#form_perfil").validate({
         frase: {
             required: true,
             minlength: 10,
-            maxlength: 50
+            maxlength: 100
         },
         resumen: {
             required: true,
             minlength: 30,
-            maxlength: 255
+            maxlength: 500
         }
     },
     highlight: function(element) {
-        $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
-        $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
+        $(element)
+            .closest(".form-group")
+            .removeClass("has-success")
+            .addClass("has-danger");
+        $(element)
+            .closest(".form-check")
+            .removeClass("has-success")
+            .addClass("has-danger");
     },
     success: function(element) {
-        $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
-        $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
+        $(element)
+            .closest(".form-group")
+            .removeClass("has-danger")
+            .addClass("has-success");
+        $(element)
+            .closest(".form-check")
+            .removeClass("has-danger")
+            .addClass("has-success");
     },
     errorPlacement: function(error, element) {
-        $(element).closest('.form-group').append(error);
+        $(element)
+            .closest(".form-group")
+            .append(error);
     }
 });
