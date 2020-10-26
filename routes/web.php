@@ -4,24 +4,13 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
- */
-
 App::setLocale('es');
 
 // TODO: rutas de dashboard
 Route::get('/', function () {
     return view('modulos.inicio');
 })->name('inicio');
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('perfil', 'UsuarioController@edit')->name('perfil');
 Route::get('configuracion', 'UsuarioController@EditConfig')->name('config');
 Route::put('configuracion/{id}', 'UsuarioController@updateconfig')->name('updateconfig');

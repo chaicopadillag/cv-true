@@ -17,6 +17,8 @@ class UsuarioController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('verified');
+
     }
     /**
      * Display a listing of the resource.
@@ -38,15 +40,15 @@ class UsuarioController extends Controller
     public function edit()
     {
         $id_user = Auth::user()->id;
-        $user    = Usuario::where('id', $id_user)->first();
+        $user = Usuario::where('id', $id_user)->first();
         return \view('modulos.perfil', array('user' => $user));
     }
 
     public function EditConfig()
     {
         $id_user = Auth::user()->id;
-        $user    = Usuario::where('id', $id_user)->first();
-        $cvs     = Cv::all();
+        $user = Usuario::where('id', $id_user)->first();
+        $cvs = Cv::all();
         return \view('modulos.config', array('user' => $user, 'cvs' => $cvs));
     }
 
@@ -63,19 +65,19 @@ class UsuarioController extends Controller
             $foto = Auth::user()->foto ?? 'img/usuarios/default.png';
         }
         $perfil = array(
-            'name'         => $request->input('name'),
-            'apellidos'    => $request->input('apellidos'),
+            'name' => $request->input('name'),
+            'apellidos' => $request->input('apellidos'),
             'especialidad' => $request->input('especialidad'),
-            'direccion'    => $request->input('direccion'),
-            'telefono'     => $request->input('telefono'),
-            'ciudad'       => $request->input('ciudad'),
-            'pais'         => $request->input('pais'),
-            'genero'       => (int) $request->input('genero'),
-            'edad'         => (int) $request->input('edad'),
+            'direccion' => $request->input('direccion'),
+            'telefono' => $request->input('telefono'),
+            'ciudad' => $request->input('ciudad'),
+            'pais' => $request->input('pais'),
+            'genero' => (int) $request->input('genero'),
+            'edad' => (int) $request->input('edad'),
             'estado_civil' => $request->input('estado_civil'),
-            'foto'         => $foto,
-            'frase'        => $request->input('frase'),
-            'resumen'      => $request->input('resumen'),
+            'foto' => $foto,
+            'frase' => $request->input('frase'),
+            'resumen' => $request->input('resumen'),
         );
         if (Usuario::where('id', $id)->update($perfil) > 0) {
             return redirect('perfil')->with('perfil-save-success', 'Tus datos de perfil se actualizarón correctamente');
@@ -88,8 +90,8 @@ class UsuarioController extends Controller
 
         $perfil = array(
             'url_usuario' => strtolower($request->input('url_usuario')),
-            'id_cv'       => $request->input('cv'),
-            'public'      => (boolean) $request->input('perfil_public'),
+            'id_cv' => $request->input('cv'),
+            'public' => (boolean) $request->input('perfil_public'),
         );
         if (Usuario::where('id', $id)->update($perfil) > 0) {
             return redirect('configuracion')->with('configuracion-save-success', '!Configuracion actualizada correctamente');
@@ -98,4 +100,3 @@ class UsuarioController extends Controller
         }
     }
 }
-

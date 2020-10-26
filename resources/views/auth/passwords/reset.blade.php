@@ -19,17 +19,6 @@
                 <h4 class="card-title">{{__('Reset Password')}}</h4>
             </div>
             <div class="card-body">
-                {{-- <p class="card-description text-center">Or Be Classical</p> --}}
-                {{-- <span class="bmd-form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="material-icons">face</i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="First Name...">
-                        </div>
-                    </span> --}}
                 <div class="bmd-form-group">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -135,7 +124,6 @@
     });
 
     $(document).ready(function() {
-        ValidarFormulario('#form_rest');
         md.checkFullPageBackgroundImage();
         setTimeout(function() {
             $('.card').removeClass('card-hidden');

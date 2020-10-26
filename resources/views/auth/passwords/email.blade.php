@@ -10,7 +10,7 @@
 @endsection
 
 @section('formulario')
-<div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+<div class="col-lg-5 col-md-6 col-sm-8 ml-auto mr-auto">
     <form class="form" method="POST" action="{{ route('password.email') }}" id="form_email">
         @csrf
         <div class="card card-login card-hidden">
@@ -19,7 +19,7 @@
             </div>
             <div class="card-body">
                 @if (session('status'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success text-center ml-3" role="alert">
                     {{ session('status') }}
                 </div>
                 @endif
@@ -36,7 +36,7 @@
                             placeholder="{{ __('E-Mail Address') }}">
 
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback ml-3" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror

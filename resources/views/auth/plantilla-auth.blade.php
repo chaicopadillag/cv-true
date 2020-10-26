@@ -118,7 +118,8 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>, hecho con <i class="material-icons">favorite</i> por
-                        <a href="{{env('URL_CREADOR')}}" class="btn-link btn-primary" target="_blank">{{env('APP_CREADOR')}}</a> para ayudarte.
+                        <a href="{{env('URL_CREADOR')}}" class="btn-link btn-primary"
+                            target="_blank">{{env('APP_CREADOR')}}</a> para ayudarte.
                     </div>
                 </div>
             </footer>

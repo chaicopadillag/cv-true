@@ -120,7 +120,7 @@
     <div class="config" id="config">
         <i class="fa fa-cog" id="btn-color"></i>
         <ul id="colores" class="colores">
-            <li class="active"><a class="original" href="{{ asset('cv/css/card.css') }}" title="Original"></a></li>
+            <li class="active"><a class="original" href="{{ asset('cv/css/card/card.css') }}" title="Original"></a></li>
             <li><a class="color morado" href="{{ asset('cv/css/card/morado.css') }}" title="Naranaja"></a></li>
             <li><a class="color celeste" href="{{ asset('cv/css/card/celeste.css') }}" title="Celeste"></a></li>
             <li><a class="color rojo" href="{{ asset('cv/css/card/rojo.css') }}" title="Rojo"></a></li>

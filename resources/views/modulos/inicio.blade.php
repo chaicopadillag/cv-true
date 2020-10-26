@@ -52,7 +52,8 @@
                 </a>
             </div>
             <div class="card-body">
-                <h6 class="card-category text-gray"><a href="{{env('URL_CREADOR')}}" target="_blank">{{env('APP_CREADOR')}}</a></h6>
+                <h6 class="card-category text-gray"><a href="{{env('URL_CREADOR')}}"
+                        target="_blank">{{env('APP_CREADOR')}}</a></h6>
                 <h4 class="card-title">{{env('SKILL_CREADOR')}}</h4>
                 <p class="card-description">
                     Te gustaria crear un <span class="text-primary">Curriculum Vitae Moderno y
@@ -66,7 +67,7 @@
                     Y felicidades por tu próximo empleo.<br>
                     <small class="text-muted">Aprovecha!!!. Gratis temporalmente.</small>
                 </p>
-                <a href="{{env('APP_URL')}}demo" target="_blak" class="btn btn-rose btn-round">Ver CV Demo</a>
+                <a href="{{env('APP_URL')}}/demo" target="_blak" class="btn btn-rose btn-round">Ver CV Demo</a>
             </div>
         </div>
     </div>

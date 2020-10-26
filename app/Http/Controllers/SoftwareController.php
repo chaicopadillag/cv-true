@@ -12,6 +12,8 @@ class SoftwareController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('verified');
+
     }
     public function index()
     {
@@ -20,9 +22,9 @@ class SoftwareController extends Controller
     }
     public function store(SoftwareRequest $request)
     {
-        $software            = new Software;
+        $software = new Software;
         $software->softwares = json_encode(explode(',', $request->input('softwares')));
-        $software->id_user   = Auth::user()->id;
+        $software->id_user = Auth::user()->id;
 
         if ($software->save() > 0) {
             return redirect('software')->with('save-success-software', '!Software agregado con exito!');

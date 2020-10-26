@@ -30,16 +30,6 @@
             </div>
             <div class="card-body">
                 {{-- <p class="card-description text-center">Or Be Classical</p> --}}
-                {{-- <span class="bmd-form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="material-icons">face</i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="First Name...">
-                        </div>
-                    </span> --}}
                 <div class="form-group has-default">
                     <div class="input-group">
                         <div class="input-group-prepend">
