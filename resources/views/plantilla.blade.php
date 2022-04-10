@@ -27,9 +27,9 @@
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="CV True" />
   <link rel="stylesheet" href="{{ asset('css/iconos.css') }}">
-  {{-- <link rel="stylesheet" href="{{asset('css/material-dashboard.min.css')}}"> --}}
+   <link rel="stylesheet" href="{{asset('css/material-dashboard.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  {{-- <script src="{{url('/')}}/js/fontawesome.js"></script> --}}
+   <!-- <script src="{{url('/')}}/js/fontawesome.js"></script> -->
 </head>
 <body>
   <div class="wrapper ">

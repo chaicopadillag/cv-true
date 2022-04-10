@@ -25047,9 +25047,9 @@ select.selectpicker {
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url(http://cv-true.local/fonts/MaterialIcons-Regular.eot);
+  src: url(../fonts/MaterialIcons-Regular.eot);
   /* For IE6-8 */
-  src: local("Material Icons"), local("MaterialIcons-Regular"), url(http://cv-true.local/fonts/MaterialIcons-Regular.woff2) format("woff2"), url(http://cv-true.local/fonts/MaterialIcons-Regular.woff) format("woff"), url(http://cv-true.local/fonts/MaterialIcons-Regular.ttf) format("truetype");
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(../fonts/MaterialIcons-Regular.woff2) format("woff2"), url(../fonts/MaterialIcons-Regular.woff) format("woff"), url(../fonts/MaterialIcons-Regular.ttf) format("truetype");
 }
 
 .material-icons {
