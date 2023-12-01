@@ -1,37 +1,32 @@
 version: '3'
 
-networks:
-  cvtruenetwork:
-
 services:
-  # PHP Service
-  app:
+  php:
     build:
       context: .
-      dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
-    ports:
-      - "8080:8080"
+    working_dir: /var/www/html
     depends_on:
-      - mysqldb
-    networks:
-      - cvtruenetwork
+      - mysql
 
-  # MySQL Service
-  mysqldb:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  mysql:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mysql
+      MYSQL_DATABASE: cv_true
       MYSQL_USER: code
       MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123456
     ports:
       - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - cvtruenetwork
 
-volumes:
-  mysql-data:

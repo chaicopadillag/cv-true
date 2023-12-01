@@ -1,18 +1,39 @@
-FROM php:7.4-fpm
+# Use an official PHP 7 image as base
+FROM php:7-fpm
 
-WORKDIR /var/www/html
-
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     git \
-    unzip \
-    libzip-dev \
-    && docker-php-ext-install zip pdo_mysql
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
 
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Set the working directory
+WORKDIR /var/www/html
+
+# Copy existing application directory contents
+COPY . /var/www/html
+
+# Install Composer dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install --no-scripts --no-autoloader
 
-COPY . .
+# Copy composer files separately to leverage Docker cache
+COPY composer.json .
+COPY composer.lock .
 
-RUN composer install
+# Run Composer in the optimized way
+RUN composer dump-autoload --optimize
 
-EXPOSE 8080
-CMD php artisan serve --host=0.0.0.0 --port=8080
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]
