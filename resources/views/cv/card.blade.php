@@ -67,25 +67,7 @@
         </div>
         <div class="derecha">
             <div class="block-info">
-                <h2 class="titulo-block"><i class="fa fa-graduation-cap"></i> Mi Formación Profesional</h2>
-                <ul class="lista-block">
-                    @foreach ($estudios as $estudio)
-                    <li class="item-block">
-                        <div class="block-iz">
-                            <h2 class="anio">{{date('d/m/Y',strtotime($estudio->fecha_inicio))}} -
-                                {{date('d/m/Y',strtotime($estudio->fecha_fin))}}</h2>
-                            <h3 class="sub-titulo">{{$estudio->especialidad}}</h3>
-                        </div>
-                        <div class="block-der">
-                            <h2 class="subtitulo-der">{{$estudio->universidad}}</h2>
-                            <p class="desc">{{$estudio->descripcion}}</p>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-            <div class="block-info">
-                <h2 class="titulo-block"><i class="fa fa-briefcase"></i> Mis Experiencias Profesionales</h2>
+                <h2 class="titulo-block"><i class="fa fa-briefcase"></i> Mi Experiencia</h2>
                 <ul class="lista-block">
                     @foreach ($experiencias as $experiencia)
                     <li class="item-block">
@@ -103,7 +85,26 @@
                 </ul>
             </div>
             <div class="block-info">
-                <h2 class="titulo-block"><i class="fa fa-shield-alt"></i> Mis Habilidades</h2>
+                <h2 class="titulo-block"><i class="fa fa-graduation-cap"></i> Mi Educación</h2>
+                <ul class="lista-block">
+                    @foreach ($estudios as $estudio)
+                    <li class="item-block">
+                        <div class="block-iz">
+                            <h2 class="anio">{{date('d/m/Y',strtotime($estudio->fecha_inicio))}} -
+                                {{date('d/m/Y',strtotime($estudio->fecha_fin))}}</h2>
+                            <h3 class="sub-titulo">{{$estudio->especialidad}}</h3>
+                        </div>
+                        <div class="block-der">
+                            <h2 class="subtitulo-der">{{$estudio->universidad}}</h2>
+                            <p class="desc">{{$estudio->descripcion}}</p>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="block-info">
+                <h2 class="titulo-block"><i class="fa fa-shield-alt"></i> Mis Skills</h2>
                 <ul class=" lista-block">
                     @foreach ($habilidades as $habilidad)
                     <li class="item-block">

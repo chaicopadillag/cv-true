@@ -91,6 +91,29 @@
 			</div>
 			<div id="nino-rightSide" class="fg">
 				<main id="nino-mainContent">
+                    <section>
+						<h2 class="nino-sectionHeading">
+							<i class="mdi mdi-briefcase fa fa-briefcase nino-icon"></i> Mi Experiencia
+						</h2>
+						<div class="nino-sectionContent">
+							<div class="inner">
+								@foreach ($experiencias as $experiencia)
+								<article>
+									<h6 class="nino-articleTitle">{{$experiencia->cargo}}</h6>
+									<div class="nino-articleMeta">
+										<span><i class="mdi mdi-domain nino-icon"></i>{{$experiencia->empresa}}</span>
+										<span><i
+												class="mdi mdi-calendar-text nino-icon"></i>{{date('d/m/Y',strtotime($experiencia->fecha_inicio))}}
+											- {{date('d/m/Y',strtotime($experiencia->fecha_fin))}}</span>
+									</div>
+									<div class="nino-articleContent" style="text-align: justify;">
+										{{$experiencia->descripcion}}
+									</div>
+								</article>
+								@endforeach
+							</div>
+						</div>
+					</section>
 					<section>
 						<h2 class="nino-sectionHeading">
 							<i class="mdi mdi-school fa fa-graduation-cap nino-icon"></i> Mi Educación
@@ -109,29 +132,6 @@
 									</div>
 									<div class="nino-articleContent" style="text-align: justify;">
 										{{$estudio->descripcion}}
-									</div>
-								</article>
-								@endforeach
-							</div>
-						</div>
-					</section>
-					<section>
-						<h2 class="nino-sectionHeading">
-							<i class="mdi mdi-briefcase fa fa-briefcase nino-icon"></i> Mis Experiencias
-						</h2>
-						<div class="nino-sectionContent">
-							<div class="inner">
-								@foreach ($experiencias as $experiencia)
-								<article>
-									<h6 class="nino-articleTitle">{{$experiencia->cargo}}</h6>
-									<div class="nino-articleMeta">
-										<span><i class="mdi mdi-domain nino-icon"></i>{{$experiencia->empresa}}</span>
-										<span><i
-												class="mdi mdi-calendar-text nino-icon"></i>{{date('d/m/Y',strtotime($experiencia->fecha_inicio))}}
-											- {{date('d/m/Y',strtotime($experiencia->fecha_fin))}}</span>
-									</div>
-									<div class="nino-articleContent" style="text-align: justify;">
-										{{$experiencia->descripcion}}
 									</div>
 								</article>
 								@endforeach
